@@ -1,0 +1,7 @@
+Virtual machine
+Instruction
+Job writing
+Assumptions
+Load
+Execute User program
+MOS

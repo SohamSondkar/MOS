@@ -1,0 +1,4 @@
+*.exe
+output.txt
+output_phase2_actual.txt
+*.o
