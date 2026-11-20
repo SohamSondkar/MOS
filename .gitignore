@@ -1,7 +1,7 @@
 *.exe
+*.o
 output.txt
 output_phase2_actual.txt
-*.o
 
 # PPT/DOCX Generation artifacts
 create_mos_pptx.js
@@ -17,3 +17,10 @@ test_v9.docx
 node_modules/
 package.json
 package-lock.json
+
+# Dashboard workspace outputs
+dashboard/workspace/run_outputs/
+dashboard/workspace/traces/
+
+# Compiled binaries in wrong locations
+src/mos.exe
