@@ -13,3 +13,11 @@ create_guide_docx.js
 create_mos_pptx.js
 create_verification_docx.js
 task_content.txt
+
+# Generated deliverable documents (PPTX/DOCX outputs)
+MOS_Presentation.pptx
+MOS_Project_Task_Distribution.docx
+Presentation_Guide.docx
+Verification_Report.docx
+output_Phase1.docx
+test_v9.docx
