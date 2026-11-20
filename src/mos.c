@@ -4,67 +4,159 @@
 
 /*
  * MOS (Master Mode):
- * Service interrupt handler. Dispatches supervisor calls:
- * - Case 1: READ (GD)
- * - Case 2: WRITE (PD)
- * - Case 3: TERMINATE (H)
+ * Service, program, and timer interrupt dispatcher implementing
+ * the Phase 2 master mode decision matrix.
  */
 void MOS(void) {
-    switch (SI) {
-        case 1:
-            READ();
-            break;
-        case 2:
-            WRITE();
-            break;
-        case 3:
-            TERMINATE();
-            break;
-        default:
-            break;
+    TRACE_EVENT("INTERRUPT", "\"job_id\":%d,\"ti\":%d,\"si\":%d,\"pi\":%d,\"ttc\":%d,\"llc\":%d",
+                current_pcb.job_id, TI, SI, PI, current_pcb.ttc, current_pcb.llc);
+
+    if (TI == 0) {
+        if (PI != 0) {
+            switch (PI) {
+                case 1:
+                    TERMINATE(EM_OPCODE_ERROR);
+                    break;
+                case 2:
+                    TERMINATE(EM_OPERAND_ERROR);
+                    break;
+                case 3: {
+                    /*
+                     * Page Fault handling:
+                     * Valid only for GD (input) and SR (store register).
+                     */
+                    if ((IR[0] == 'G' && IR[1] == 'D') || (IR[0] == 'S' && IR[1] == 'R')) {
+                        int va = (IR[2] - '0') * 10 + (IR[3] - '0');
+                        int p = va / 10;
+                        int new_frame = ALLOCATE();
+                        if (new_frame == -1) {
+                            TERMINATE(EM_INVALID_PAGE_FAULT);
+                            return;
+                        }
+                        M[PTR + p][0] = ' ';
+                        M[PTR + p][1] = ' ';
+                        M[PTR + p][2] = '0' + (new_frame / 10);
+                        M[PTR + p][3] = '0' + (new_frame % 10);
+                        TRACE_EVENT("PAGE_FAULT_RESOLVE", "\"job_id\":%d,\"page\":%d,\"new_frame\":%d",
+                                    current_pcb.job_id, p, new_frame);
+                        PI = 0;
+                    } else {
+                        TERMINATE(EM_INVALID_PAGE_FAULT);
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+            return;
+        }
+
+        switch (SI) {
+            case 1: {
+                int va = (IR[2] - '0') * 10;
+                int ra = 0;
+                ADDRESSMAP(va, &ra);
+                READ(ra);
+                SI = 0;
+                break;
+            }
+            case 2: {
+                int va = (IR[2] - '0') * 10;
+                int ra = 0;
+                ADDRESSMAP(va, &ra);
+                WRITE(ra);
+                SI = 0;
+                break;
+            }
+            case 3:
+                TERMINATE(EM_NO_ERROR);
+                break;
+            default:
+                break;
+        }
+    } else if (TI == 2) {
+        if (PI != 0) {
+            switch (PI) {
+                case 1:
+                    TERMINATE(EM_TIME_AND_OPCODE);
+                    break;
+                case 2:
+                    TERMINATE(EM_TIME_AND_OPERAND);
+                    break;
+                case 3:
+                    TERMINATE(EM_TIME_LIMIT);
+                    break;
+                default:
+                    TERMINATE(EM_TIME_LIMIT);
+                    break;
+            }
+            return;
+        }
+
+        switch (SI) {
+            case 1:
+                TERMINATE(EM_TIME_LIMIT);
+                break;
+            case 2: {
+                int va = (IR[2] - '0') * 10;
+                int ra = 0;
+                ADDRESSMAP(va, &ra);
+                WRITE(ra);
+                if (!job_terminated) {
+                    TERMINATE(EM_TIME_LIMIT);
+                }
+                break;
+            }
+            case 3:
+                TERMINATE(EM_NO_ERROR);
+                break;
+            default:
+                TERMINATE(EM_TIME_LIMIT);
+                break;
+        }
     }
 }
 
 /*
  * READ:
  * Implements the GD service request.
- * - Forces address units digit to '0' (IR[4] <- 0 in 1-based indexing)
- * - Reads next (data) card from input file into memory locations IR[3,4] through IR[3,4] + 9
- * - If M[IR[3,4]] = $END, aborts out-of-data
+ * - Forces address units digit to '0'
+ * - Reads next (data) card into real memory locations real_address through real_address + 9
+ * - If buffer is $END, triggers OUT OF DATA termination (EM = 1)
  */
-void READ(void) {
-    /* IR[4] <- 0 (In 0-indexed C: IR[3] = '0') */
+void READ(int real_address) {
     IR[3] = '0';
-    int address = (IR[2] - '0') * 10;
-
     char buffer[BUFFER_SIZE];
+
     if (fgets(buffer, sizeof(buffer), fp_in) == NULL) {
-        /* Unexpected EOF before data or $END card */
-        fprintf(stderr, "Out-of-data error: unexpected EOF on READ\n");
-        SI = 3;
-        TERMINATE();
+        TERMINATE(EM_OUT_OF_DATA);
         return;
     }
 
-    /* If next card is $END, trigger out-of-data abort */
     if (strncmp(buffer, "$END", 4) == 0) {
-        fprintf(stderr, "Out-of-data error: encountered $END on READ\n");
-        SI = 3;
-        TERMINATE();
+        TERMINATE(EM_OUT_OF_DATA);
         return;
     }
 
-    /* Clear target memory block (10 words) */
-    for (int i = address; i < address + BLOCK_WORDS; i++) {
+    int base_word = (real_address / WORDS_PER_FRAME) * WORDS_PER_FRAME;
+
+    char esc_buf[BUFFER_SIZE * 2];
+    escape_trace_str(esc_buf, buffer, (int)strlen(buffer));
+    TRACE_EVENT("SERVICE_READ", "\"job_id\":%d,\"real_address\":%d,\"card\":\"%s\"",
+                current_pcb.job_id, real_address, esc_buf);
+
+    /* Clear target frame memory block */
+    for (int i = 0; i < WORDS_PER_FRAME; i++) {
         for (int j = 0; j < WORD_SIZE; j++) {
-            M[i][j] = '\0';
+            M[base_word + i][j] = '\0';
         }
     }
 
-    /* Store card buffer in memory locations address through address + 9 */
-    int word = address;
+    /* Store up to 40 characters from card into real memory */
+    int word = base_word;
     int col = 0;
-    for (int k = 0; buffer[k] != '\0' && buffer[k] != '\r' && buffer[k] != '\n' && word < address + BLOCK_WORDS; k++) {
+    for (int k = 0; buffer[k] != '\0' && buffer[k] != '\r' && buffer[k] != '\n' &&
+                    word < base_word + WORDS_PER_FRAME; k++) {
         M[word][col] = buffer[k];
         col++;
         if (col == WORD_SIZE) {
@@ -72,42 +164,112 @@ void READ(void) {
             word++;
         }
     }
+
+    for (int w = 0; w < WORDS_PER_FRAME; w++) {
+        char esc_w[16];
+        escape_trace_str(esc_w, M[base_word + w], WORD_SIZE);
+        TRACE_EVENT("MEM_SET", "\"word\":%d,\"content\":\"%s\"",
+                    base_word + w, esc_w);
+    }
+
+    current_pcb.ttc++;
+    if (current_pcb.ttc == current_pcb.ttl) {
+        TI = 2;
+    }
 }
 
 /*
  * WRITE:
  * Implements the PD service request.
- * - Forces address units digit to '0' (IR[4] <- 0 in 1-based indexing)
- * - Writes one block (10 words of memory) from memory locations IR[3,4] through IR[3,4] + 9
- * - Preserves all actual spaces and non-null characters
+ * - Forces address units digit to '0'
+ * - Increments line limit counter (LLC)
+ * - If LLC > TLL, triggers LINE LIMIT EXCEEDED termination (EM = 2) without writing
+ * - Otherwise writes one full block (40 bytes) to output file, followed by '\n'
  */
-void WRITE(void) {
-    /* IR[4] <- 0 (In 0-indexed C: IR[3] = '0') */
+void WRITE(int real_address) {
     IR[3] = '0';
-    int address = (IR[2] - '0') * 10;
+    current_pcb.llc++;
+    int base_word = (real_address / WORDS_PER_FRAME) * WORDS_PER_FRAME;
 
-    /* Write non-null characters from the 10-word block */
-    for (int i = address; i < address + BLOCK_WORDS; i++) {
+    char esc_block[BLOCK_SIZE * 2 + 1];
+    escape_trace_str(esc_block, &M[base_word][0], BLOCK_SIZE);
+    TRACE_EVENT("SERVICE_WRITE", "\"job_id\":%d,\"real_address\":%d,\"llc\":%d,\"tll\":%d,\"suppressed\":%s,\"block\":\"%s\"",
+                current_pcb.job_id, real_address, current_pcb.llc, current_pcb.tll,
+                current_pcb.llc > current_pcb.tll ? "true" : "false", esc_block);
+
+    if (current_pcb.llc > current_pcb.tll) {
+        TERMINATE(EM_LINE_LIMIT);
+        return;
+    }
+
+    /* Write 40 raw memory bytes (including padding nulls) to output file */
+    for (int i = 0; i < WORDS_PER_FRAME; i++) {
         for (int j = 0; j < WORD_SIZE; j++) {
-            if (M[i][j] != '\0') {
-                fputc(M[i][j], fp_out);
-            }
+            fputc(M[base_word + i][j], fp_out);
         }
     }
     fputc('\n', fp_out);
-    job_lines_printed++;
 }
 
 /*
  * TERMINATE:
- * Implements job termination.
- * - Writes blank lines in output file separating jobs if output was produced
- * - Does not consume cards from input stream, allowing the loader to naturally
- *   synchronize to the next $AMJ
+ * Implements job termination:
+ * - Emits formatted 6-line status block followed by job separation newlines
+ * - Sets job_terminated flag to stop execution of current job
  */
-void TERMINATE(void) {
-    /* Write blank line separation matching the test specification if job produced output */
-    if (job_lines_printed > 0) {
-        fprintf(fp_out, "\n\n\n");
+void TERMINATE(int EM) {
+    job_terminated = true;
+
+    const char *msg = "";
+    switch (EM) {
+        case EM_NO_ERROR:
+            msg = " NO ERROR";
+            break;
+        case EM_OUT_OF_DATA:
+            msg = " OUT OF DATA";
+            break;
+        case EM_LINE_LIMIT:
+            msg = " LINE LIMIT EXCEEDED";
+            break;
+        case EM_TIME_LIMIT:
+            msg = " TIME LIMIT EXCEEDED";
+            break;
+        case EM_OPCODE_ERROR:
+            msg = " OPERATION CODE ERROR";
+            break;
+        case EM_OPERAND_ERROR:
+            msg = " OPERAND ERROR";
+            break;
+        case EM_INVALID_PAGE_FAULT:
+            msg = " INVALID PAGE FAULT";
+            break;
+        case EM_TIME_AND_OPCODE:
+            msg = " TIME LIMIT EXCEEDED  And OPERATION CODE ERROR";
+            break;
+        case EM_TIME_AND_OPERAND:
+            msg = " TIME LIMIT EXCEEDED And OPERAND ERROR";
+            break;
+        default:
+            msg = " UNKNOWN ERROR";
+            break;
     }
+
+    int reported_llc = current_pcb.llc;
+    if (EM == EM_LINE_LIMIT && reported_llc > current_pcb.tll) {
+        reported_llc = current_pcb.tll;
+    }
+
+    char esc_ir[16];
+    escape_trace_str(esc_ir, IR, 4);
+    TRACE_EVENT("TERMINATE", "\"job_id\":%d,\"em\":%d,\"message\":\"%s\",\"ic\":%d,\"ir\":\"%s\",\"ttc\":%d,\"llc\":%d",
+                current_pcb.job_id, EM, msg, IC, esc_ir, current_pcb.ttc, reported_llc);
+
+    fprintf(fp_out, "JOB ID   :  %d\n", current_pcb.job_id);
+    fprintf(fp_out, "%s\n", msg);
+    fprintf(fp_out, "IC       :  %d\n", IC);
+    fprintf(fp_out, "IR       :  ");
+    fwrite(IR, 1, WORD_SIZE, fp_out);
+    fputc('\n', fp_out);
+    fprintf(fp_out, "TTC      :  %d\n", current_pcb.ttc);
+    fprintf(fp_out, "LLC      :  %d\n\n", reported_llc);
 }

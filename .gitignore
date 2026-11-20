@@ -2,3 +2,18 @@
 output.txt
 output_phase2_actual.txt
 *.o
+
+# PPT/DOCX Generation artifacts
+create_mos_pptx.js
+create_guide_docx.js
+create_verification_docx.js
+MOS_Presentation.pptx
+Presentation_Guide.docx
+Verification_Report.docx
+task_content.txt
+test_v9.docx
+
+# Node.js dependencies for PPT/DOCX generation
+node_modules/
+package.json
+package-lock.json
