@@ -21,3 +21,11 @@ Presentation_Guide.docx
 Verification_Report.docx
 output_Phase1.docx
 test_v9.docx
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Dashboard-generated execution outputs
+dashboard/workspace/run_outputs/*
+dashboard/workspace/traces/*

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOS Phase 1 & Phase 2 — Interactive Project Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">⚙️</span>
+                <div>
+                    <div class="brand-title">MOS SIMULATOR</div>
+                    <div class="brand-subtitle">Phase 1 & Phase 2</div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#overview" class="sidebar-nav-item active" data-target="overview-section">
+                    <span class="nav-icon">📊</span>
+                    <span>Overview</span>
+                </a>
+                <a href="#simulator" class="sidebar-nav-item" data-target="simulator-section">
+                    <span class="nav-icon">🚀</span>
+                    <span>Live Simulator</span>
+                </a>
+                <a href="#phase1" class="sidebar-nav-item" data-target="phase1-section">
+                    <span class="nav-icon">🔹</span>
+                    <span>Phase 1 Dashboard</span>
+                </a>
+                <a href="#phase2" class="sidebar-nav-item" data-target="phase2-section">
+                    <span class="nav-icon">🔷</span>
+                    <span>Phase 2 Dashboard</span>
+                </a>
+                <a href="#comparison" class="sidebar-nav-item" data-target="comparison-section">
+                    <span class="nav-icon">⚖️</span>
+                    <span>Phase Comparison</span>
+                </a>
+                <a href="#architecture" class="sidebar-nav-item" data-target="architecture-section">
+                    <span class="nav-icon">🗺️</span>
+                    <span>Architecture Visualizer</span>
+                </a>
+                <a href="#testing" class="sidebar-nav-item" data-target="testing-section">
+                    <span class="nav-icon">🧪</span>
+                    <span>Testing & Verification</span>
+                </a>
+                <a href="#files" class="sidebar-nav-item" data-target="files-section">
+                    <span class="nav-icon">📁</span>
+                    <span>Project Files</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="pulse-dot"></span>
+                    <span>System: 100% Verified</span>
+                </div>
+                <div>Workspace: D:\OS\CP</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Wrapper -->
+        <main class="main-wrapper">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="page-headline">
+                    <h1>Multiprogramming Operating System (MOS)</h1>
+                    <p>Dual-Mode Virtual Machine & Operating System Simulation in C (Standard C11)</p>
+                </div>
+                <div class="top-badges">
+                    <span class="badge badge-phase1">Phase 1: Verified (11/11)</span>
+                    <span class="badge badge-phase2">Phase 2: Verified (10/10)</span>
+                    <span class="badge badge-success">1,500/1,500 Bytes Match</span>
+                </div>
+            </header>
+
+            <!-- SECTION A: OVERVIEW -->
+            <section id="overview-section" class="content-section active">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Official Jobs</div>
+                        <div class="stat-value" id="stat-total-jobs">21</div>
+                        <div class="stat-subtext">11 Phase 1 + 10 Phase 2</div>
+                    </div>
+                    <div class="stat-card emerald">
+                        <div class="stat-label">Verification Rate</div>
+                        <div class="stat-value" id="stat-total-passed">21 / 21</div>
+                        <div class="stat-subtext">100% Pass across all tests</div>
+                    </div>
+                    <div class="stat-card purple">
+                        <div class="stat-label">Phase 1 Baseline</div>
+                        <div class="stat-value" id="stat-phase1-result">11 / 11 Passed</div>
+                        <div class="stat-subtext">Isolated in D:\OS\CP\phase1\</div>
+                    </div>
+                    <div class="stat-card" style="border-top-color: var(--accent-cyan);">
+                        <div class="stat-label">Phase 2 Verification</div>
+                        <div class="stat-value" id="stat-phase2-result" style="color: var(--accent-cyan);">10 / 10 Passed</div>
+                        <div class="stat-subtext">10 Official Jobs Verified</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Phase 2 Byte Fidelity</div>
+                        <div class="stat-value" id="stat-byte-match">1,500 / 1,500 B</div>
+                        <div class="stat-subtext">Exact 0-mismatch binary match</div>
+                    </div>
+                    <div class="stat-card amber">
+                        <div class="stat-label">Compiler Flags</div>
+                        <div class="stat-value" style="font-size: 18px; line-height: 32px;">-Wall -Wextra</div>
+                        <div class="stat-subtext">0 compiler warnings (C11)</div>
+                    </div>
+                </div>
+
+                <!-- Dual Mode & Project Introduction Card -->
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">🏛️</span> Dual-Mode Architecture & System Philosophy</span>
+                        <span class="badge badge-info">Hardware / OS Boundary</span>
+                    </div>
+                    <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.7;">
+                        The Multiprogramming Operating System (MOS) project simulates a complete computing machine and operating system kernel written in C. It enforces strict hardware-level separation between unprivileged user code and privileged kernel services:
+                    </p>
+                    <div class="two-col-grid">
+                        <div style="background-color: rgba(0,0,0,0.25); padding: 18px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-blue);">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 6px;">Slave Mode (User Mode / CPU Execution)</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary);">
+                                The simulated CPU executes instructions (<code>LR</code>, <code>SR</code>, <code>CR</code>, <code>BT</code>, <code>GD</code>, <code>PD</code>, <code>H</code>). It has no direct access to real I/O devices or the page frame allocator. Any I/O request, illegal operation, invalid operand, page fault, or time limit expiration triggers a hardware interrupt and immediately traps to Master Mode.
+                            </p>
+                        </div>
+                        <div style="background-color: rgba(0,0,0,0.25); padding: 18px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+                            <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">Master Mode (Kernel Mode / MOS Supervisor)</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary);">
+                                The simulated kernel inspects the interrupt registers (<code>SI</code>, <code>PI</code>, <code>TI</code>). It dynamically allocates physical frames on valid page faults, executes card reading (<code>READ</code>) and line printing (<code>WRITE</code>), enforces CPU time (<code>TTL</code>) and line limits (<code>TLL</code>), and formats exact 6-line termination status blocks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- High Level Phase Comparison Summary -->
+                <div class="two-col-grid">
+                    <div class="card">
+                        <div class="card-title">
+                            <span><span class="card-title-icon">🔹</span> Phase 1 — Contiguous Linear Memory</span>
+                            <span class="badge badge-phase1">Phase 1</span>
+                        </div>
+                        <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 13px; line-height: 1.8;">
+                            <li>Flat 100-word physical memory (<code>M[100][4]</code>, 400 bytes).</li>
+                            <li>Direct physical addressing from location <code>00</code> to <code>99</code>.</li>
+                            <li>Service Interrupts only: <code>SI = 1</code> (GD), <code>2</code> (PD), <code>3</code> (H).</li>
+                            <li>Control cards: <code>$AMJ</code>, <code>$DTA</code>, <code>$END</code>.</li>
+                            <li>Preserved in <code>phase1/</code> and committed to git branch <code>master</code>.</li>
+                            <li><strong>Result:</strong> 11 / 11 test jobs passing against <code>output_Phase1.docx</code>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <span><span class="card-title-icon">🔷</span> Phase 2 — Paged Virtual Memory & Interrupts</span>
+                            <span class="badge badge-phase2">Phase 2</span>
+                        </div>
+                        <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 13px; line-height: 1.8;">
+                            <li>300-word physical memory (<code>M[300][4]</code>, 30 frames &times; 10 words).</li>
+                            <li>10-word Page Table in physical memory pointed to by <code>PTR</code>.</li>
+                            <li>Random frame allocation (<code>ALLOCATE()</code>) with collision avoidance.</li>
+                            <li>Multi-vector interrupts: <code>SI</code> (1..3), <code>PI</code> (1..3), and <code>TI</code> (2).</li>
+                            <li>Process Control Block (<code>PCB</code>): <code>TTL</code>, <code>TLL</code>, <code>TTC</code>, <code>LLC</code>.</li>
+                            <li><strong>Result:</strong> 10 / 10 jobs passing, exact 1,500/1,500 byte match.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: INTERACTIVE LIVE SIMULATOR -->
+            <section id="simulator-section" class="content-section">
+                <!-- Control Panel -->
+                <div class="sim-control-card">
+                    <div class="sim-control-header">
+                        <div>
+                            <h2 style="font-size: 18px; color: var(--text-primary); margin-bottom: 4px;">
+                                <span>🚀</span> Interactive MOS Simulator & Hardware Visualizer
+                            </h2>
+                            <p style="font-size: 13px; color: var(--text-secondary);">
+                                Controls and visualizes the compiled C simulator (<code>mos.exe</code> / <code>mos_phase1.exe</code>) with step-by-step trace playback.
+                            </p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span id="backend-status-pill" class="badge badge-warning">Backend: Checking...</span>
+                            <div class="sim-phase-toggle">
+                                <button id="btn-phase-toggle-2" class="sim-phase-btn active" onclick="switchSimulatorPhase(2)">Phase 2 (Paged 300W)</button>
+                                <button id="btn-phase-toggle-1" class="sim-phase-btn phase1" onclick="switchSimulatorPhase(1)">Phase 1 (Linear 100W)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions & Input Selection Bar -->
+                    <div class="sim-actions-bar">
+                        <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 260px;">
+                            <label style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Input Deck:</label>
+                            <select id="input-deck-select" class="search-input" style="padding: 8px 12px; margin-bottom: 0; flex: 1;" onchange="handleInputDeckChange()">
+                                <option value="p2_official">Phase 2 Official Test Input (10 Jobs)</option>
+                                <option value="p1_official">Phase 1 Official Test Input (11 Jobs)</option>
+                            </select>
+                        </div>
+
+                        <button id="btn-build" class="btn-secondary-action" onclick="buildCProgram()">
+                            <span>🔨</span> Build C Program
+                        </button>
+                        <button id="btn-run" class="btn-primary-action" onclick="runSimulator()">
+                            <span>▶</span> Run & Load Execution Trace
+                        </button>
+                        <button id="btn-run-tests" class="btn-secondary-action" onclick="runAutomatedTests()">
+                            <span>🧪</span> Run Official Tests
+                        </button>
+                        <button id="btn-reset" class="btn-secondary-action" onclick="resetSimulator()">
+                            <span>🔄</span> Reset
+                        </button>
+                    </div>
+
+                    <!-- Quick Viva Demo Presets Bar -->
+                    <div class="presets-container">
+                        <div class="presets-title">
+                            <span>🎓</span> 1-Click Viva Demo Presets (Jump to Job):
+                        </div>
+                        <div id="viva-preset-chips" class="preset-chips">
+                            <!-- Populated dynamically based on Phase -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playback & Stepping Controller -->
+                <div class="playback-bar">
+                    <div class="playback-status-row">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span id="vm-mode-pill" class="mode-badge-slave">SLAVE MODE (CPU)</span>
+                            <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">
+                                Step <span id="current-step-num" style="color: var(--accent-cyan); font-family: var(--font-mono); font-size: 15px;">0</span> of <span id="total-steps-num" style="font-family: var(--font-mono);">0</span>
+                            </span>
+                            <span id="active-job-id" class="badge badge-info">Job ID: --</span>
+                            <span id="active-event-tag" class="code-pill">IDLE</span>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <select id="job-jump-select" class="search-input" style="padding: 5px 10px; margin-bottom: 0; font-size: 12px;" onchange="handleJobJump(this.value)">
+                                <option value="">Jump to Job...</option>
+                            </select>
+                            <div class="speed-control">
+                                <span id="speed-val-label">300ms</span>
+                                <input type="range" id="speed-slider" class="speed-slider" min="50" max="1000" step="50" value="300" oninput="updatePlaybackSpeed(this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="playback-controls-row">
+                        <div class="playback-btn-group">
+                            <button id="btn-step-first" class="playback-btn" title="First Step (Home)" onclick="stepFirst()">⏮</button>
+                            <button id="btn-step-prev" class="playback-btn" title="Previous Step (Left Arrow)" onclick="stepPrev()">◀</button>
+                            <button id="btn-step-play" class="playback-btn play-btn" title="Play / Pause (Space)" onclick="togglePlayPause()">▶</button>
+                            <button id="btn-step-next" class="playback-btn" title="Next Step (Right Arrow)" onclick="stepNext()">▶</button>
+                            <button id="btn-step-last" class="playback-btn" title="Last Step (End)" onclick="stepLast()">⏭</button>
+                        </div>
+
+                        <div class="scrubber-container">
+                            <input type="range" id="step-scrubber" class="step-slider" min="1" max="1" value="1" oninput="handleScrub(this.value)">
+                        </div>
+                    </div>
+
+                    <!-- Step Event Detailed Summary Banner -->
+                    <div id="step-event-summary" class="event-summary-banner">
+                        <span>Simulator ready. Click <strong>"Run & Load Execution Trace"</strong> to launch the real C program and step through execution.</span>
+                        <span id="step-time-pill" class="badge badge-info" style="font-size: 11px;">TTC: 0</span>
+                    </div>
+                </div>
+
+                <!-- Hardware Registers & VM State Grid -->
+                <div class="hw-state-grid">
+                    <!-- CPU Registers -->
+                    <div class="hw-card">
+                        <div class="hw-card-title">
+                            <span>Virtual CPU Registers</span>
+                            <span class="badge badge-info">Slave Mode</span>
+                        </div>
+                        <div class="reg-values-grid">
+                            <div id="box-ir" class="reg-box">
+                                <div class="reg-name">IR</div>
+                                <div id="reg-ir" class="reg-val">----</div>
+                            </div>
+                            <div id="box-ic" class="reg-box highlight">
+                                <div class="reg-name">IC (VA)</div>
+                                <div id="reg-ic" class="reg-val">00</div>
+                            </div>
+                            <div id="box-ra" class="reg-box">
+                                <div class="reg-name">Real Addr</div>
+                                <div id="reg-ra" class="reg-val">--</div>
+                            </div>
+                            <div id="box-r" class="reg-box">
+                                <div class="reg-name">R</div>
+                                <div id="reg-r" class="reg-val">----</div>
+                            </div>
+                            <div id="box-c" class="reg-box">
+                                <div class="reg-name">C (Toggle)</div>
+                                <div id="reg-c" class="reg-val">0</div>
+                            </div>
+                            <div id="box-ptr" class="reg-box">
+                                <div class="reg-name">PTR</div>
+                                <div id="reg-ptr" class="reg-val">--</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PCB & Resource Limits -->
+                    <div class="hw-card">
+                        <div class="hw-card-title">
+                            <span>Process Control Block (PCB)</span>
+                            <span id="pcb-job-badge" class="badge badge-phase2">JOB: --</span>
+                        </div>
+                        <div class="pcb-meter">
+                            <div class="pcb-meter-header">
+                                <span>Time Limit (TTL): <strong id="pcb-ttl-val">--</strong></span>
+                                <span>TTC: <strong id="pcb-ttc-val">0</strong></span>
+                            </div>
+                            <div class="pcb-bar-track">
+                                <div id="pcb-ttc-bar" class="pcb-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="pcb-meter" style="margin-top: 14px;">
+                            <div class="pcb-meter-header">
+                                <span>Line Limit (TLL): <strong id="pcb-tll-val">--</strong></span>
+                                <span>LLC: <strong id="pcb-llc-val">0</strong></span>
+                            </div>
+                            <div class="pcb-bar-track">
+                                <div id="pcb-llc-bar" class="pcb-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interrupt Vector & Trap Unit -->
+                    <div class="hw-card">
+                        <div class="hw-card-title">
+                            <span>Interrupt Vector Flags</span>
+                            <span class="badge badge-warning">Master Mode Trap</span>
+                        </div>
+                        <div class="reg-values-grid">
+                            <div id="box-si" class="reg-box">
+                                <div class="reg-name">SI (Service)</div>
+                                <div id="reg-si" class="reg-val">0</div>
+                            </div>
+                            <div id="box-pi" class="reg-box">
+                                <div class="reg-name">PI (Program)</div>
+                                <div id="reg-pi" class="reg-val">0</div>
+                            </div>
+                            <div id="box-ti" class="reg-box">
+                                <div class="reg-name">TI (Timer)</div>
+                                <div id="reg-ti" class="reg-val">0</div>
+                            </div>
+                        </div>
+                        <div id="interrupt-detail-box" style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; line-height: 1.5;">
+                            No active interrupts. CPU executing instructions in Slave Mode.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 MMU, Page Table & 30-Frame Memory Allocation -->
+                <div id="p2-mmu-container" class="mmu-grid">
+                    <!-- Page Table Inspector -->
+                    <div class="card" style="margin-bottom: 0;">
+                        <div class="card-title">
+                            <span><span class="card-title-icon">📄</span> Active Job Page Table</span>
+                            <span id="pt-base-badge" class="badge badge-phase2">PTR = --</span>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="pt-table">
+                                <thead>
+                                    <tr>
+                                        <th>Virtual Page</th>
+                                        <th>PT Address (PTR + p)</th>
+                                        <th>Allocated Frame</th>
+                                        <th>Memory Range</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pt-table-body">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- MMU Translation & Frame Matrix -->
+                    <div class="card" style="margin-bottom: 0;">
+                        <div class="card-title">
+                            <span><span class="card-title-icon">🔄</span> MMU Translation & 30 Physical Frames</span>
+                            <span id="mmu-status-pill" class="badge badge-success">MMU: Ready</span>
+                        </div>
+                        
+                        <!-- MMU Translation Flowchart -->
+                        <div class="mmu-diagram-box">
+                            <div class="mmu-formula">
+                                <span>Virtual Address:</span>
+                                <span id="mmu-va" class="mmu-chip">VA: --</span>
+                                <span>➔</span>
+                                <span>Page:</span>
+                                <span id="mmu-p" class="mmu-chip">p: --</span>
+                                <span>Offset:</span>
+                                <span id="mmu-d" class="mmu-chip">d: --</span>
+                            </div>
+                            <div class="mmu-formula" style="margin-top: 8px;">
+                                <span>Page Table Entry:</span>
+                                <span id="mmu-pte" class="mmu-chip">M[PTR+p]: --</span>
+                                <span>➔</span>
+                                <span>Frame:</span>
+                                <span id="mmu-f" class="mmu-chip">f: --</span>
+                                <span>➔ Real Address:</span>
+                                <span id="mmu-ra" class="mmu-chip" style="color: var(--accent-emerald);">RA: --</span>
+                            </div>
+                            <div id="mmu-fault-alert" style="font-size: 11px; text-align: center; color: var(--text-muted); margin-top: 6px;">
+                                Address translation valid.
+                            </div>
+                        </div>
+
+                        <!-- 30-Frame Physical Allocator Matrix -->
+                        <div style="margin-top: 14px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-secondary);">
+                                <strong>Physical Frames (30 Frames &times; 10 Words = 300 Words):</strong>
+                                <span style="font-size: 11px;">🟣 PTR &nbsp; 🟢 Prog &nbsp; 🔵 Data &nbsp; ⚪ Free</span>
+                            </div>
+                            <div id="frames-matrix" class="frames-matrix-grid">
+                                <!-- 30 frames rendered dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Physical Memory Grid Inspector -->
+                <div class="card" style="margin-top: 24px;">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">🧠</span> Simulated Physical Memory Grid</span>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="search-wrapper" style="margin-bottom: 0; width: 220px;">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" id="mem-search" class="search-input" placeholder="Search address or text..." oninput="handleMemSearch(this.value)">
+                            </div>
+                            <span id="mem-size-badge" class="badge badge-info">300 Words (M[0..299])</span>
+                        </div>
+                    </div>
+                    <div class="mem-inspector-container">
+                        <table class="mem-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 80px;">Word #</th>
+                                    <th style="width: 90px;">Frame / Blk</th>
+                                    <th style="width: 120px;">Word Raw</th>
+                                    <th>ASCII Content Preview</th>
+                                    <th style="width: 140px;">Memory Role</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mem-table-body">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Input Deck & Custom Editor Card -->
+                <div class="card" style="margin-top: 24px;">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">📑</span> Input Deck Viewer & Custom Card Editor</span>
+                        <div class="tab-switch">
+                            <button id="tab-deck-view" class="tab-btn active" onclick="switchDeckTab('view')">Deck Viewer</button>
+                            <button id="tab-deck-edit" class="tab-btn" onclick="switchDeckTab('edit')">Custom Editor</button>
+                        </div>
+                    </div>
+
+                    <div id="deck-view-container">
+                        <div id="card-deck-preview" class="card-deck-preview">Loading card deck...</div>
+                    </div>
+
+                    <div id="deck-edit-container" style="display: none;">
+                        <textarea id="deck-editor" class="deck-editor-textarea" placeholder="Type custom MOS card deck here ($AMJ... program cards... $DTA... data... $END)..."></textarea>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <span style="font-size: 12px; color: var(--text-secondary);">Cards must follow MOS 40-byte card layout.</span>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn btn-sm btn-secondary-action" onclick="saveCustomDeck()">💾 Save Deck</button>
+                                <button class="btn btn-sm btn-primary-action" onclick="runCustomDeck()">▶ Run Custom in C Simulator</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulator Output Console & Binary Verification -->
+                <div class="card" style="margin-top: 24px;">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">📜</span> C Simulator Output & Benchmark Verification</span>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span id="output-match-pill" class="badge badge-success">Binary Match: 1,500/1,500 Bytes (100%)</span>
+                            <button class="btn btn-sm btn-copy" onclick="copySimOutput()">📋 Copy Output</button>
+                            <button class="btn btn-sm btn-copy" onclick="downloadSimOutput()">💾 Download</button>
+                        </div>
+                    </div>
+
+                    <div class="diff-grid">
+                        <div class="diff-panel">
+                            <div class="diff-header">
+                                <span>Actual C Simulator Output (Generated)</span>
+                                <span id="actual-bytes-label" class="badge badge-info">1500 Bytes</span>
+                            </div>
+                            <div id="sim-output-text" class="diff-content">Click "Run & Load Execution Trace" to generate actual output.</div>
+                        </div>
+
+                        <div class="diff-panel">
+                            <div class="diff-header">
+                                <span>Authoritative Benchmark Reference Output</span>
+                                <span id="ref-bytes-label" class="badge badge-info">1500 Bytes</span>
+                            </div>
+                            <div id="sim-ref-output-text" class="diff-content">Loading authoritative reference...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Test Suite Terminal Modal -->
+                <div id="test-runner-modal" class="modal-overlay">
+                    <div class="modal-card" style="max-width: 850px;">
+                        <div class="modal-header">
+                            <div>
+                                <span class="modal-tag">AUTOMATED TEST SUITE</span>
+                                <h3>Official PowerShell Test Runner Execution</h3>
+                            </div>
+                            <button class="modal-close" onclick="closeTestRunnerModal()">✕</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="test-runner-status" style="margin-bottom: 12px; font-weight: 600;">Executing test runner...</div>
+                            <div id="test-runner-output" class="stream-log-box" style="max-height: 400px;">Running...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION B: PHASE 1 DASHBOARD -->
+            <section id="phase1-section" class="content-section">
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">🔹</span> Phase 1 Architecture & Specifications</span>
+                        <span class="badge badge-phase1">Baseline Specification: AOSPROJECT1.pdf</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 14px;">
+                        Phase 1 models a single-job batch operating system with flat contiguous memory, direct addressing, and service interrupt handling.
+                    </p>
+
+                    <div class="two-col-grid" style="margin-bottom: 16px;">
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 8px;">Hardware Registers & Components:</h4>
+                            <ul style="padding-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+                                <li><code>M[100][4]</code>: 100 memory words, each 4 bytes (total 400 bytes). Organized as 10 blocks of 10 words.</li>
+                                <li><code>IR[4]</code>: Instruction Register (2 bytes opcode, 2 bytes operand address).</li>
+                                <li><code>IC</code>: Instruction Counter (2 digits: 00 to 99).</li>
+                                <li><code>R[4]</code>: General Purpose Register (4 bytes).</li>
+                                <li><code>C</code>: 1-byte Comparison Toggle (1 = True, 0 = False).</li>
+                                <li><code>SI</code>: Service Interrupt flag (1 = Read/GD, 2 = Write/PD, 3 = Terminate/H).</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 8px;">Supervisor Services & Control Cards:</h4>
+                            <ul style="padding-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+                                <li><code>$AMJ</code>: Start of job card. Invokes <code>INIT()</code> to clear memory and registers.</li>
+                                <li><code>$DTA</code>: Data card marker. Invokes <code>MOS_STARTEXECUTION()</code> to reset <code>IC = 0</code>.</li>
+                                <li><code>$END</code>: End of job card. Terminates execution and readies loader for next job.</li>
+                                <li><code>READ()</code>: Reads 40-character card into memory block <code>address..address+9</code>.</li>
+                                <li><code>WRITE()</code>: Writes 40-character memory block to printer output.</li>
+                                <li><code>TERMINATE()</code>: Emits 3 blank lines between jobs in output.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- The Out of Data Bug Card -->
+                    <div style="background-color: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); padding: 16px; border-radius: var(--radius-sm);">
+                        <h4 style="color: var(--accent-rose); margin-bottom: 6px;">Debugged Challenge: Out-of-Data Card Skipping Bug</h4>
+                        <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+                            <strong>Problem:</strong> When Job 1 encountered an out-of-data condition (reading <code>$END</code> on <code>GD</code>), <code>TERMINATE()</code> contained a card-reading loop looking for <code>$END</code>. Because <code>$END</code> had already been consumed by <code>READ()</code>, <code>TERMINATE()</code> inadvertently read past the next job's <code>$AMJ</code> card, completely skipping Job 2.<br>
+                            <strong>Fix:</strong> Removed the card-reading loop from <code>TERMINATE()</code>. <code>LOAD()</code>'s outer loop naturally synchronizes to the next <code>$AMJ</code>, guaranteeing independent job isolation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Phase 1 Jobs Table -->
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">📋</span> Phase 1 Test Results (11 / 11 Verified Jobs)</span>
+                        <div class="search-wrapper" style="margin-bottom: 0; width: 280px;">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="phase1-search" class="search-input" placeholder="Search Phase 1 jobs...">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Job #</th>
+                                    <th>Test Job Name</th>
+                                    <th>Instruction Mix</th>
+                                    <th>Expected Output String</th>
+                                    <th>Verification Notes</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="phase1-jobs-body">
+                                <!-- Populated dynamically by script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION C: PHASE 2 DASHBOARD -->
+            <section id="phase2-section" class="content-section">
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">🔷</span> Phase 2 Architecture & Specifications</span>
+                        <span class="badge badge-phase2">Specification: AOSPROJECT2.pdf</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 14px;">
+                        Phase 2 introduces paged virtual memory, dynamic frame allocation, multi-vector interrupts, resource limits (time & lines), and error handling.
+                    </p>
+
+                    <div class="two-col-grid" style="margin-bottom: 18px;">
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 8px;">Paging & Physical Memory Model:</h4>
+                            <ul style="padding-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+                                <li><code>M[300][4]</code>: Physical memory of 300 words (1,200 bytes) divided into <strong>30 frames</strong> (0 to 29) of 10 words (40 bytes) each.</li>
+                                <li><code>PTR</code>: Page Table Register holds the physical word index of the Page Table (<code>PTR = pt_frame * 10</code>).</li>
+                                <li><strong>Page Table:</strong> 10 words in physical memory mapping virtual pages 0–9. Initialized with <code>'****'</code>.</li>
+                                <li><code>ALLOCATE()</code>: Randomly picks free frames (0..29) with collision resolution and tracking.</li>
+                                <li><code>ADDRESSMAP(VA, &RA)</code>: Translates 2-digit virtual address <code>VA</code> to physical word address <code>RA</code>; detects <code>PI = 2</code> (Operand Error) and <code>PI = 3</code> (Page Fault).</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 8px;">Process Control Block (PCB) & Limits:</h4>
+                            <ul style="padding-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+                                <li><code>job_id</code>: Parsed from <code>$AMJ</code> columns 5–8.</li>
+                                <li><code>ttl</code>: Total Time Limit (columns 9–12).</li>
+                                <li><code>tll</code>: Total Line Limit (columns 13–16).</li>
+                                <li><code>ttc</code>: Total Time Counter (incremented each CPU cycle in Slave Mode).</li>
+                                <li><code>llc</code>: Line Limit Counter (incremented in <code>WRITE()</code>; terminates on <code>LLC > TLL</code>).</li>
+                                <li><strong>Valid vs Invalid Page Fault:</strong> Faults on <code>GD</code> / <code>SR</code> dynamically allocate frames; faults on <code>LR</code>, <code>CR</code>, <code>BT</code>, <code>PD</code> terminate with <code>EM = 6</code>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Master Mode Decision Matrix Table -->
+                    <h4 style="color: var(--text-primary); margin-bottom: 10px;">Master Mode 2D Decision Matrix (from AOSPROJECT2.pdf):</h4>
+                    <div class="two-col-grid" style="margin-bottom: 16px;">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>TI</th>
+                                        <th>SI</th>
+                                        <th>Kernel Action</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-bold">READ</td><td>Read card to memory; trap $END for OUT OF DATA (EM 1)</td></tr>
+                                    <tr><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-bold">WRITE</td><td>LLC++; If LLC > TLL terminate EM 2, else write 40B</td></tr>
+                                    <tr><td class="cell-num">0</td><td class="cell-num">3</td><td class="cell-bold">TERMINATE(0)</td><td>Normal halt (NO ERROR)</td></tr>
+                                    <tr><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-bold">TERMINATE(3)</td><td>Time limit exceeded on input request</td></tr>
+                                    <tr><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-bold">WRITE, THEN TERMINATE(3)</td><td>Perform write (if LLC &le; TLL), then timeout (Job 4)</td></tr>
+                                    <tr><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-bold">TERMINATE(0)</td><td>Halt takes precedence over timeout</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>TI</th>
+                                        <th>PI</th>
+                                        <th>Kernel Action</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-bold">TERMINATE(4)</td><td>OPERATION CODE ERROR (Job 6)</td></tr>
+                                    <tr><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-bold">TERMINATE(5)</td><td>OPERAND ERROR (non-digit address) (Job 5)</td></tr>
+                                    <tr><td class="cell-num">0</td><td class="cell-num">3</td><td class="cell-bold">Page Fault Handler</td><td>Valid (GD/SR) &rarr; ALLOCATE; Invalid &rarr; TERMINATE(6)</td></tr>
+                                    <tr><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-bold">TERMINATE(34)</td><td>Composite: TIME LIMIT & OPERATION CODE (Job 9)</td></tr>
+                                    <tr><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-bold">TERMINATE(35)</td><td>Composite: TIME LIMIT & OPERAND ERROR (Job 8)</td></tr>
+                                    <tr><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-bold">TERMINATE(3)</td><td>Time limit takes precedence over page fault</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 Jobs Table -->
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">📋</span> Phase 2 Official Test Results (10 / 10 Verified Jobs)</span>
+                        <div class="search-wrapper" style="margin-bottom: 0; width: 280px;">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="phase2-search" class="search-input" placeholder="Search Phase 2 jobs...">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Job ID</th>
+                                    <th>Test Purpose & Triggers</th>
+                                    <th>Error Message Status</th>
+                                    <th>IC</th>
+                                    <th>IR</th>
+                                    <th>TTC</th>
+                                    <th>LLC</th>
+                                    <th>Blocks</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="phase2-jobs-body">
+                                <!-- Populated dynamically by script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION D: PHASE COMPARISON -->
+            <section id="comparison-section" class="content-section">
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">⚖️</span> Side-by-Side Architectural Comparison</span>
+                        <span class="badge badge-info">10 Core Dimensions</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 18px;">
+                        This comparative analysis contrasts the architectural evolution from Phase 1's flat contiguous memory to Phase 2's paged virtual memory kernel.
+                    </p>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 18%;">Dimension / Feature</th>
+                                    <th style="width: 30%;">Phase 1 (Baseline)</th>
+                                    <th style="width: 32%;">Phase 2 (Advanced Paging)</th>
+                                    <th style="width: 20%;">Architectural Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparison-table-body">
+                                <!-- Populated dynamically by script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION E: ARCHITECTURE VISUALIZER -->
+            <section id="architecture-section" class="content-section">
+                <div class="card">
+                    <div class="visualizer-header">
+                        <div>
+                            <div class="card-title" style="margin-bottom: 2px;">
+                                <span><span class="card-title-icon">🗺️</span> Interactive Architecture Visualizer</span>
+                            </div>
+                            <p style="font-size: 13px; color: var(--text-secondary);">
+                                Click any component to inspect its implementation details, algorithm, and C function signature.
+                            </p>
+                        </div>
+                        <div class="tab-switch">
+                            <button id="arch-tab-p1" class="tab-btn">Phase 1 Diagram</button>
+                            <button id="arch-tab-p2" class="tab-btn active">Phase 2 Diagram</button>
+                        </div>
+                    </div>
+
+                    <!-- Flow Container -->
+                    <div id="architecture-diagram-container">
+                        <!-- Populated dynamically by script.js -->
+                    </div>
+                </div>
+
+                <!-- Explanation Cards -->
+                <div class="two-col-grid">
+                    <div class="card">
+                        <div class="card-title">
+                            <span><span class="card-title-icon">🔄</span> Address Translation Flow (MMU)</span>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
+                            When the CPU accesses virtual address <code>VA</code> (e.g. <code>IR[2..3]</code> or <code>IC</code>):
+                        </p>
+                        <ol style="padding-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8; margin-top: 8px;">
+                            <li><code>ADDRESSMAP()</code> checks if characters are valid decimal digits. If not &rarr; <code>PI = 2</code> (Operand Error).</li>
+                            <li>Computes virtual page <code>p = VA / 10</code> and word offset <code>d = VA % 10</code>.</li>
+                            <li>Reads page table entry <code>M[PTR + p]</code>. If unallocated (<code>'*'</code>) &rarr; <code>PI = 3</code> (Page Fault).</li>
+                            <li>Reads real frame number <code>f</code> from entry. Computes physical address <code>RA = f * 10 + d</code>.</li>
+                        </ol>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <span><span class="card-title-icon">⚡</span> Interrupt Arbitration & Trap Handling</span>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
+                            At the conclusion of each instruction cycle:
+                        </p>
+                        <ol style="padding-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8; margin-top: 8px;">
+                            <li><code>current_pcb.ttc</code> increments by 1. If <code>TTC == TTL</code>, hardware sets <code>TI = 2</code>.</li>
+                            <li>If <code>SI != 0</code>, <code>PI != 0</code>, or <code>TI != 0</code>, CPU breaks user loop and calls <code>MOS()</code>.</li>
+                            <li>Master Mode evaluates the 2D matrix: dispatching <code>READ</code>, <code>WRITE</code>, dynamic allocation, or <code>TERMINATE(EM)</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION F: TESTING & VERIFICATION -->
+            <section id="testing-section" class="content-section">
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">🧪</span> Rigorous Verification Evidence</span>
+                        <span class="badge badge-success">21 / 21 Jobs Passing</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                        Testing follows strict evidence-based verification. Test runners execute compiled binaries, capture outputs, and perform byte-level comparisons.
+                    </p>
+
+                    <div class="two-col-grid" style="margin-bottom: 20px;">
+                        <div style="background-color: rgba(0,0,0,0.25); padding: 18px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+                            <h4 style="color: #c084fc; margin-bottom: 6px;">Phase 1 Test Suite (11 Jobs)</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">
+                                Validates memory word shuffling, conditional branch fallthrough (Job 6), space preservation, and clean termination against <code>output_Phase1.docx</code>.
+                            </p>
+                            <div class="cmd-code" style="margin-bottom: 8px;">
+                                <code>powershell -ExecutionPolicy Bypass -File phase1/test/run_test.ps1</code>
+                            </div>
+                            <button class="btn btn-sm btn-copy" onclick="copyToClipboard('powershell -ExecutionPolicy Bypass -File phase1/test/run_test.ps1', this)">
+                                📋 Copy Phase 1 Test Command
+                            </button>
+                        </div>
+
+                        <div style="background-color: rgba(0,0,0,0.25); padding: 18px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+                            <h4 style="color: #22d3ee; margin-bottom: 6px;">Phase 2 Full Test Suite (10 Jobs)</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">
+                                Verifies all 10 jobs in <code>input_phase2.txt</code>, performing a byte-by-byte binary comparison against <code>output_phase2.txt</code> (1,500 / 1,500 bytes match).
+                            </p>
+                            <div class="cmd-code" style="margin-bottom: 8px;">
+                                <code>powershell -ExecutionPolicy Bypass -File test/run_test_phase2.ps1</code>
+                            </div>
+                            <button class="btn btn-sm btn-copy" onclick="copyToClipboard('powershell -ExecutionPolicy Bypass -File test/run_test_phase2.ps1', this)">
+                                📋 Copy Phase 2 Test Command
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Verification Notes -->
+                    <div style="background-color: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); padding: 16px; border-radius: var(--radius-sm);">
+                        <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">Verification Methodology & Safety</h4>
+                        <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+                            • <strong>Exact Binary Comparison:</strong> Test runner reads both reference and actual output as raw byte arrays. Length matches exactly at 1,500 bytes with 0 byte differences.<br>
+                            • <strong>Null-Byte Preservation:</strong> Preserves 40-byte raw memory dumps and null-padded instruction registers (<code>H\0\0\0</code>).<br>
+                            • <strong>Zero GCC Warnings:</strong> Both phases compile with zero warnings under <code>-Wall -Wextra -std=c11</code>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: PROJECT FILES -->
+            <section id="files-section" class="content-section">
+                <div class="card">
+                    <div class="card-title">
+                        <span><span class="card-title-icon">📁</span> Project File Explorer & Architecture</span>
+                        <div class="search-wrapper" style="margin-bottom: 0; width: 280px;">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="files-search" class="search-input" placeholder="Search project files...">
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 13px;">
+                        Exact files and paths in workspace <code>D:\OS\CP\</code>. Click <strong>Copy Path</strong> to copy the relative file path to your clipboard.
+                    </p>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>File Path</th>
+                                    <th>Category</th>
+                                    <th>Size</th>
+                                    <th>Type</th>
+                                    <th>Description / Purpose</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="project-files-body">
+                                <!-- Populated dynamically by script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Component Detail Modal -->
+    <div id="component-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <span id="modal-tag" class="modal-tag">SUBSYSTEM</span>
+                    <h3 id="modal-title">Component Title</h3>
+                </div>
+                <button id="modal-close-btn" class="modal-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-summary" class="modal-summary">High-level role summary</div>
+                <div id="modal-details" class="modal-details">Detailed architectural walkthrough...</div>
+                <div class="modal-code-wrapper">
+                    <code id="modal-code">// C snippet</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
