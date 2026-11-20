@@ -7,14 +7,27 @@ $ErrorActionPreference = "Stop"
 # Local testing may run from anywhere
 $scriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 
-if (Test-Path ".\src\main.c") {
+$inPhase1Dir = Test-Path ".\src\main.c"
+$hasPhase1Input = Test-Path ".\input_Phase1.txt"
+
+if ($inPhase1Dir -and $hasPhase1Input) {
     # We're in the phase1 directory (CI runs from here)
     $phase1Root = Get-Location
     $rootDir = Split-Path $phase1Root -Parent
 } else {
-    # We need to find phase1 from the script's location (script is in phase1/test/)
-    $phase1Root = Split-Path $scriptDir -Parent
-    $rootDir = Split-Path $phase1Root -Parent
+    # We need to find phase1 from the script's location (script is in test/)
+    # or we're in phase1/test/ directory
+    if (Test-Path ".\phase1\src\main.c") {
+        $phase1Root = ".\phase1"
+        $rootDir = Get-Location
+    } elseif ($scriptDir -match "phase1[\\/]test$") {
+        $phase1Root = Split-Path $scriptDir -Parent
+        $rootDir = Split-Path $phase1Root -Parent
+    } else {
+        # Script is in test/ directory at root level
+        $phase1Root = Split-Path $scriptDir -Parent
+        $rootDir = Split-Path $phase1Root -Parent
+    }
 }
 
 Write-Host "=====================================================" -ForegroundColor Cyan
@@ -25,8 +38,7 @@ Write-Host ""
 
 # 1. Compilation - compile Phase 1 source files
 Write-Host "[1/3] Compiling Phase 1 source code with GCC (-Wall -Wextra -std=c11)..." -ForegroundColor Yellow
-$compileCmd = "gcc -Wall -Wextra -std=c11 -I`"$phase1Root\include`" `"$phase1Root\src\main.c`" `"$phase1Root\src\vm.c`" `"$phase1Root\src\mos.c`" -o mos.exe"
-Invoke-Expression $compileCmd
+& gcc -Wall -Wextra -std=c11 -I"$phase1Root\include" "$phase1Root\src\main.c" "$phase1Root\src\vm.c" "$phase1Root\src\mos.c" -o "$phase1Root\mos.exe"
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Compilation FAILED with exit code $LASTEXITCODE" -ForegroundColor Red
     exit 1
@@ -36,8 +48,7 @@ Write-Host ""
 
 # 2. Execution - run Phase 1 simulator with Phase 1 input
 Write-Host "[2/3] Running MOS Phase 1 simulator on input_Phase1.txt..." -ForegroundColor Yellow
-$runCmd = "`"$phase1Root\mos.exe`" `"$phase1Root\input_Phase1.txt`" `"$phase1Root\output.txt`""
-Invoke-Expression $runCmd
+& "$phase1Root\mos.exe" "$phase1Root\input_Phase1.txt" "$phase1Root\output.txt"
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Execution FAILED with exit code $LASTEXITCODE" -ForegroundColor Red
     exit 1
