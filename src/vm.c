@@ -168,9 +168,6 @@ void LOAD(void) {
             current_pcb.ttc = 0;
             current_pcb.llc = 0;
 
-            TRACE_EVENT("JOB_START", "\"job_id\":%d,\"ttl\":%d,\"tll\":%d",
-                        current_pcb.job_id, current_pcb.ttl, current_pcb.tll);
-
             /* Allocate frame for Page Table */
             int pt_frame = ALLOCATE();
             if (pt_frame == -1) {
@@ -179,9 +176,6 @@ void LOAD(void) {
                 continue;
             }
             PTR = pt_frame * WORDS_PER_FRAME;
-
-            TRACE_EVENT("ALLOC_PAGE_TABLE", "\"job_id\":%d,\"pt_frame\":%d,\"ptr\":%d",
-                        current_pcb.job_id, pt_frame, PTR);
 
             /* Initialize Page Table entries to '*' */
             for (int i = 0; i < PAGE_TABLE_SIZE; i++) {
@@ -195,12 +189,10 @@ void LOAD(void) {
             while (fgets(buffer, sizeof(buffer), fp_in) != NULL) {
                 if (strncmp(buffer, "$DTA", 4) == 0) {
                     /* Control card: $DTA -> begin program execution */
-                    TRACE_EVENT("CARD_DTA", "\"job_id\":%d,\"action\":\"Begin Execution\"", current_pcb.job_id);
                     MOS_STARTEXECUTION();
                     break;
                 } else if (strncmp(buffer, "$END", 4) == 0) {
                     /* Control card: $END without $DTA */
-                    TRACE_EVENT("CARD_END", "\"job_id\":%d,\"action\":\"End of Job Cards\"", current_pcb.job_id);
                     break;
                 } else {
                     /* Program Card */
@@ -223,11 +215,6 @@ void LOAD(void) {
                     M[PTR + prog_page][2] = '0' + (prog_frame / 10);
                     M[PTR + prog_page][3] = '0' + (prog_frame % 10);
 
-                    char esc_card[BUFFER_SIZE * 2];
-                    escape_trace_str(esc_card, buffer, (int)strlen(buffer));
-                    TRACE_EVENT("LOAD_PROG", "\"job_id\":%d,\"page\":%d,\"frame\":%d,\"card\":\"%s\"",
-                                current_pcb.job_id, prog_page, prog_frame, esc_card);
-
                     /* Load up to 10 words (40 bytes) into the allocated frame */
                     int word = prog_frame * WORDS_PER_FRAME;
                     int col = 0;
@@ -240,14 +227,6 @@ void LOAD(void) {
                             word++;
                         }
                     }
-
-                    for (int w = 0; w < WORDS_PER_FRAME; w++) {
-                        char esc_w[16];
-                        escape_trace_str(esc_w, M[prog_frame * WORDS_PER_FRAME + w], WORD_SIZE);
-                        TRACE_EVENT("MEM_SET", "\"word\":%d,\"content\":\"%s\"",
-                                    prog_frame * WORDS_PER_FRAME + w, esc_w);
-                    }
-
                     prog_page++;
                 }
             }
@@ -342,7 +321,6 @@ void EXECUTEUSERPROGRAM(void) {
         /* 1. Instruction Fetch */
         int real_ic = 0;
         if (ADDRESSMAP(IC, &real_ic) != 0) {
-            TRACE_EVENT("FETCH_FAULT", "\"job_id\":%d,\"ic\":%d,\"pi\":%d", current_pcb.job_id, IC, PI);
             MOS();
             break;
         }
@@ -351,13 +329,6 @@ void EXECUTEUSERPROGRAM(void) {
         }
         IC++;
 
-        char esc_ir[16], opcode[3], operand[3];
-        escape_trace_str(esc_ir, IR, 4);
-        opcode[0] = IR[0]; opcode[1] = IR[1]; opcode[2] = '\0';
-        operand[0] = IR[2]; operand[1] = IR[3]; operand[2] = '\0';
-        TRACE_EVENT("FETCH", "\"job_id\":%d,\"ic\":%d,\"real_ic\":%d,\"ir\":\"%s\",\"opcode\":\"%s\",\"operand\":\"%s\"",
-                    current_pcb.job_id, IC - 1, real_ic, esc_ir, opcode, operand);
-
         /* 2. Decode and Execute */
         if (IR[0] == 'H') {
             SI = 3;
@@ -365,78 +336,55 @@ void EXECUTEUSERPROGRAM(void) {
             if (current_pcb.ttc == current_pcb.ttl) {
                 TI = 2;
             }
-            char esc_r[16];
-            escape_trace_str(esc_r, R, 4);
-            TRACE_EVENT("EXECUTE", "\"job_id\":%d,\"opcode\":\"H\",\"r\":\"%s\",\"c\":%d,\"ic\":%d,\"ttc\":%d,\"ttl\":%d,\"ti\":%d",
-                        current_pcb.job_id, esc_r, C, IC, current_pcb.ttc, current_pcb.ttl, TI);
             MOS();
             break;
         } else if (IR[0] == 'G' && IR[1] == 'D') {
             int va = 0;
             if (PARSE_OPERAND(&IR[2], &va) != 0) {
-                TRACE_EVENT("OPERAND_ERROR", "\"job_id\":%d,\"ir\":\"%s\",\"pi\":2", current_pcb.job_id, esc_ir);
                 MOS();
                 break;
             }
             int real_op = 0;
             if (ADDRESSMAP(va, &real_op) != 0) {
                 /* Valid page fault for GD: allocate frame in Master Mode */
-                TRACE_EVENT("PAGE_FAULT_TRIGGER", "\"job_id\":%d,\"opcode\":\"GD\",\"va\":%d,\"page\":%d",
-                            current_pcb.job_id, va, va / 10);
                 MOS();
                 if (job_terminated) break;
                 ADDRESSMAP(va, &real_op);
             }
-            TRACE_EVENT("DECODE", "\"job_id\":%d,\"opcode\":\"GD\",\"operand\":\"%s\",\"va\":%d,\"ra\":%d,\"page\":%d,\"offset\":%d,\"pi\":%d",
-                        current_pcb.job_id, operand, va, real_op, va / 10, va % 10, PI);
             SI = 1;
             MOS();
             if (job_terminated) break;
         } else if (IR[0] == 'P' && IR[1] == 'D') {
             int va = 0;
             if (PARSE_OPERAND(&IR[2], &va) != 0) {
-                TRACE_EVENT("OPERAND_ERROR", "\"job_id\":%d,\"ir\":\"%s\",\"pi\":2", current_pcb.job_id, esc_ir);
                 MOS();
                 break;
             }
             int real_op = 0;
             if (ADDRESSMAP(va, &real_op) != 0) {
                 /* Page fault on PD is invalid */
-                TRACE_EVENT("INVALID_PAGE_FAULT", "\"job_id\":%d,\"opcode\":\"PD\",\"va\":%d,\"page\":%d",
-                            current_pcb.job_id, va, va / 10);
                 MOS();
                 break;
             }
-            TRACE_EVENT("DECODE", "\"job_id\":%d,\"opcode\":\"PD\",\"operand\":\"%s\",\"va\":%d,\"ra\":%d,\"page\":%d,\"offset\":%d,\"pi\":%d",
-                        current_pcb.job_id, operand, va, real_op, va / 10, va % 10, PI);
             SI = 2;
             current_pcb.ttc++;
             if (current_pcb.ttc == current_pcb.ttl) {
                 TI = 2;
             }
-            char esc_r[16];
-            escape_trace_str(esc_r, R, 4);
-            TRACE_EVENT("EXECUTE", "\"job_id\":%d,\"opcode\":\"PD\",\"r\":\"%s\",\"c\":%d,\"ic\":%d,\"ttc\":%d,\"ttl\":%d,\"ti\":%d",
-                        current_pcb.job_id, esc_r, C, IC, current_pcb.ttc, current_pcb.ttl, TI);
             MOS();
             if (job_terminated) break;
         } else if (IR[0] == 'L' && IR[1] == 'R') {
             int va = 0;
             if (PARSE_OPERAND(&IR[2], &va) != 0) {
-                TRACE_EVENT("OPERAND_ERROR", "\"job_id\":%d,\"ir\":\"%s\",\"pi\":2", current_pcb.job_id, esc_ir);
                 MOS();
                 break;
             }
             int real_op = 0;
             if (ADDRESSMAP(va, &real_op) != 0) {
                 /* Invalid page fault */
-                TRACE_EVENT("INVALID_PAGE_FAULT", "\"job_id\":%d,\"opcode\":\"LR\",\"va\":%d,\"page\":%d",
-                            current_pcb.job_id, va, va / 10);
                 MOS();
                 break;
             }
-            TRACE_EVENT("DECODE", "\"job_id\":%d,\"opcode\":\"LR\",\"operand\":\"%s\",\"va\":%d,\"ra\":%d,\"page\":%d,\"offset\":%d,\"pi\":%d",
-                        current_pcb.job_id, operand, va, real_op, va / 10, va % 10, PI);
             for (int j = 0; j < WORD_SIZE; j++) {
                 R[j] = M[real_op][j];
             }
@@ -444,28 +392,19 @@ void EXECUTEUSERPROGRAM(void) {
             if (current_pcb.ttc == current_pcb.ttl) {
                 TI = 2;
             }
-            char esc_r[16];
-            escape_trace_str(esc_r, R, 4);
-            TRACE_EVENT("EXECUTE", "\"job_id\":%d,\"opcode\":\"LR\",\"r\":\"%s\",\"c\":%d,\"ic\":%d,\"ttc\":%d,\"ttl\":%d,\"ti\":%d",
-                        current_pcb.job_id, esc_r, C, IC, current_pcb.ttc, current_pcb.ttl, TI);
         } else if (IR[0] == 'S' && IR[1] == 'R') {
             int va = 0;
             if (PARSE_OPERAND(&IR[2], &va) != 0) {
-                TRACE_EVENT("OPERAND_ERROR", "\"job_id\":%d,\"ir\":\"%s\",\"pi\":2", current_pcb.job_id, esc_ir);
                 MOS();
                 break;
             }
             int real_op = 0;
             if (ADDRESSMAP(va, &real_op) != 0) {
                 /* Valid page fault for SR: allocate frame in Master Mode */
-                TRACE_EVENT("PAGE_FAULT_TRIGGER", "\"job_id\":%d,\"opcode\":\"SR\",\"va\":%d,\"page\":%d",
-                            current_pcb.job_id, va, va / 10);
                 MOS();
                 if (job_terminated) break;
                 ADDRESSMAP(va, &real_op);
             }
-            TRACE_EVENT("DECODE", "\"job_id\":%d,\"opcode\":\"SR\",\"operand\":\"%s\",\"va\":%d,\"ra\":%d,\"page\":%d,\"offset\":%d,\"pi\":%d",
-                        current_pcb.job_id, operand, va, real_op, va / 10, va % 10, PI);
             for (int j = 0; j < WORD_SIZE; j++) {
                 M[real_op][j] = R[j];
             }
@@ -473,28 +412,18 @@ void EXECUTEUSERPROGRAM(void) {
             if (current_pcb.ttc == current_pcb.ttl) {
                 TI = 2;
             }
-            char esc_r[16];
-            escape_trace_str(esc_r, R, 4);
-            TRACE_EVENT("EXECUTE", "\"job_id\":%d,\"opcode\":\"SR\",\"r\":\"%s\",\"c\":%d,\"ic\":%d,\"ttc\":%d,\"ttl\":%d,\"ti\":%d",
-                        current_pcb.job_id, esc_r, C, IC, current_pcb.ttc, current_pcb.ttl, TI);
-            TRACE_EVENT("MEM_SET", "\"word\":%d,\"content\":\"%s\"", real_op, esc_r);
         } else if (IR[0] == 'C' && IR[1] == 'R') {
             int va = 0;
             if (PARSE_OPERAND(&IR[2], &va) != 0) {
-                TRACE_EVENT("OPERAND_ERROR", "\"job_id\":%d,\"ir\":\"%s\",\"pi\":2", current_pcb.job_id, esc_ir);
                 MOS();
                 break;
             }
             int real_op = 0;
             if (ADDRESSMAP(va, &real_op) != 0) {
                 /* Invalid page fault */
-                TRACE_EVENT("INVALID_PAGE_FAULT", "\"job_id\":%d,\"opcode\":\"CR\",\"va\":%d,\"page\":%d",
-                            current_pcb.job_id, va, va / 10);
                 MOS();
                 break;
             }
-            TRACE_EVENT("DECODE", "\"job_id\":%d,\"opcode\":\"CR\",\"operand\":\"%s\",\"va\":%d,\"ra\":%d,\"page\":%d,\"offset\":%d,\"pi\":%d",
-                        current_pcb.job_id, operand, va, real_op, va / 10, va % 10, PI);
             int match = 1;
             for (int j = 0; j < WORD_SIZE; j++) {
                 if (R[j] != M[real_op][j]) {
@@ -507,19 +436,12 @@ void EXECUTEUSERPROGRAM(void) {
             if (current_pcb.ttc == current_pcb.ttl) {
                 TI = 2;
             }
-            char esc_r[16];
-            escape_trace_str(esc_r, R, 4);
-            TRACE_EVENT("EXECUTE", "\"job_id\":%d,\"opcode\":\"CR\",\"r\":\"%s\",\"c\":%d,\"ic\":%d,\"ttc\":%d,\"ttl\":%d,\"ti\":%d",
-                        current_pcb.job_id, esc_r, C, IC, current_pcb.ttc, current_pcb.ttl, TI);
         } else if (IR[0] == 'B' && IR[1] == 'T') {
             int va = 0;
             if (PARSE_OPERAND(&IR[2], &va) != 0) {
-                TRACE_EVENT("OPERAND_ERROR", "\"job_id\":%d,\"ir\":\"%s\",\"pi\":2", current_pcb.job_id, esc_ir);
                 MOS();
                 break;
             }
-            TRACE_EVENT("DECODE", "\"job_id\":%d,\"opcode\":\"BT\",\"operand\":\"%s\",\"va\":%d,\"c\":%d",
-                        current_pcb.job_id, operand, va, C);
             if (C == 1) {
                 IC = va;
             }
@@ -527,14 +449,9 @@ void EXECUTEUSERPROGRAM(void) {
             if (current_pcb.ttc == current_pcb.ttl) {
                 TI = 2;
             }
-            char esc_r[16];
-            escape_trace_str(esc_r, R, 4);
-            TRACE_EVENT("EXECUTE", "\"job_id\":%d,\"opcode\":\"BT\",\"r\":\"%s\",\"c\":%d,\"ic\":%d,\"ttc\":%d,\"ttl\":%d,\"ti\":%d",
-                        current_pcb.job_id, esc_r, C, IC, current_pcb.ttc, current_pcb.ttl, TI);
         } else {
             /* Unknown Operation Code */
             PI = 1;
-            TRACE_EVENT("OPCODE_ERROR", "\"job_id\":%d,\"ir\":\"%s\",\"pi\":1", current_pcb.job_id, esc_ir);
             MOS();
             break;
         }

@@ -27,17 +27,10 @@ extern char R[WORD_SIZE];
 extern int  C;
 extern int  SI;
 extern int  job_lines_printed;
-extern int  current_job_id;
 
 /* File pointers for simulated card reader and printer */
 extern FILE *fp_in;
 extern FILE *fp_out;
-
-/* Optional JSON-lines trace file pointer and step counter */
-extern FILE *fp_trace;
-extern int trace_step;
-void TRACE_EVENT(const char *event_type, const char *fmt, ...);
-void escape_trace_str(const char *src, char *dst, size_t dst_size);
 
 /* VM & Loader Prototypes */
 void INIT(void);

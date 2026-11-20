@@ -10,7 +10,6 @@
  * - Case 3: TERMINATE (H)
  */
 void MOS(void) {
-    TRACE_EVENT("INTERRUPT", "\"job_id\":%d,\"si\":%d", current_job_id, SI);
     switch (SI) {
         case 1:
             READ();
@@ -47,10 +46,6 @@ void READ(void) {
         return;
     }
 
-    char esc_buf[BUFFER_SIZE * 2];
-    escape_trace_str(buffer, esc_buf, sizeof(esc_buf));
-    TRACE_EVENT("SERVICE_READ", "\"job_id\":%d,\"block\":%d,\"card\":\"%s\"", current_job_id, address, esc_buf);
-
     /* If next card is $END, trigger out-of-data abort */
     if (strncmp(buffer, "$END", 4) == 0) {
         fprintf(stderr, "Out-of-data error: encountered $END on READ\n");
@@ -73,19 +68,9 @@ void READ(void) {
         M[word][col] = buffer[k];
         col++;
         if (col == WORD_SIZE) {
-            char word_buf[5] = { M[word][0], M[word][1], M[word][2], M[word][3], '\0' };
-            char esc_w[16];
-            escape_trace_str(word_buf, esc_w, sizeof(esc_w));
-            TRACE_EVENT("MEM_SET", "\"word\":%d,\"content\":\"%s\"", word, esc_w);
             col = 0;
             word++;
         }
-    }
-    if (col > 0 && word < address + BLOCK_WORDS) {
-        char word_buf[5] = { M[word][0], M[word][1], M[word][2], M[word][3], '\0' };
-        char esc_w[16];
-        escape_trace_str(word_buf, esc_w, sizeof(esc_w));
-        TRACE_EVENT("MEM_SET", "\"word\":%d,\"content\":\"%s\"", word, esc_w);
     }
 }
 
@@ -101,25 +86,14 @@ void WRITE(void) {
     IR[3] = '0';
     int address = (IR[2] - '0') * 10;
 
-    char line_buf[BLOCK_SIZE + 1];
-    int line_len = 0;
-
     /* Write non-null characters from the 10-word block */
     for (int i = address; i < address + BLOCK_WORDS; i++) {
         for (int j = 0; j < WORD_SIZE; j++) {
             if (M[i][j] != '\0') {
                 fputc(M[i][j], fp_out);
-                if (line_len < BLOCK_SIZE) {
-                    line_buf[line_len++] = M[i][j];
-                }
             }
         }
     }
-    line_buf[line_len] = '\0';
-    char esc_out[BLOCK_SIZE * 2];
-    escape_trace_str(line_buf, esc_out, sizeof(esc_out));
-    TRACE_EVENT("SERVICE_WRITE", "\"job_id\":%d,\"block\":%d,\"output\":\"%s\"", current_job_id, address, esc_out);
-
     fputc('\n', fp_out);
     job_lines_printed++;
 }
@@ -132,7 +106,6 @@ void WRITE(void) {
  *   synchronize to the next $AMJ
  */
 void TERMINATE(void) {
-    TRACE_EVENT("TERMINATE", "\"job_id\":%d,\"ic\":%d", current_job_id, IC);
     /* Write blank line separation matching the test specification if job produced output */
     if (job_lines_printed > 0) {
         fprintf(fp_out, "\n\n\n");

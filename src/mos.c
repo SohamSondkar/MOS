@@ -8,9 +8,6 @@
  * the Phase 2 master mode decision matrix.
  */
 void MOS(void) {
-    TRACE_EVENT("INTERRUPT", "\"job_id\":%d,\"ti\":%d,\"si\":%d,\"pi\":%d,\"ttc\":%d,\"llc\":%d",
-                current_pcb.job_id, TI, SI, PI, current_pcb.ttc, current_pcb.llc);
-
     if (TI == 0) {
         if (PI != 0) {
             switch (PI) {
@@ -37,8 +34,6 @@ void MOS(void) {
                         M[PTR + p][1] = ' ';
                         M[PTR + p][2] = '0' + (new_frame / 10);
                         M[PTR + p][3] = '0' + (new_frame % 10);
-                        TRACE_EVENT("PAGE_FAULT_RESOLVE", "\"job_id\":%d,\"page\":%d,\"new_frame\":%d",
-                                    current_pcb.job_id, p, new_frame);
                         PI = 0;
                     } else {
                         TERMINATE(EM_INVALID_PAGE_FAULT);
@@ -140,11 +135,6 @@ void READ(int real_address) {
 
     int base_word = (real_address / WORDS_PER_FRAME) * WORDS_PER_FRAME;
 
-    char esc_buf[BUFFER_SIZE * 2];
-    escape_trace_str(esc_buf, buffer, (int)strlen(buffer));
-    TRACE_EVENT("SERVICE_READ", "\"job_id\":%d,\"real_address\":%d,\"card\":\"%s\"",
-                current_pcb.job_id, real_address, esc_buf);
-
     /* Clear target frame memory block */
     for (int i = 0; i < WORDS_PER_FRAME; i++) {
         for (int j = 0; j < WORD_SIZE; j++) {
@@ -165,13 +155,6 @@ void READ(int real_address) {
         }
     }
 
-    for (int w = 0; w < WORDS_PER_FRAME; w++) {
-        char esc_w[16];
-        escape_trace_str(esc_w, M[base_word + w], WORD_SIZE);
-        TRACE_EVENT("MEM_SET", "\"word\":%d,\"content\":\"%s\"",
-                    base_word + w, esc_w);
-    }
-
     current_pcb.ttc++;
     if (current_pcb.ttc == current_pcb.ttl) {
         TI = 2;
@@ -189,18 +172,12 @@ void READ(int real_address) {
 void WRITE(int real_address) {
     IR[3] = '0';
     current_pcb.llc++;
-    int base_word = (real_address / WORDS_PER_FRAME) * WORDS_PER_FRAME;
-
-    char esc_block[BLOCK_SIZE * 2 + 1];
-    escape_trace_str(esc_block, &M[base_word][0], BLOCK_SIZE);
-    TRACE_EVENT("SERVICE_WRITE", "\"job_id\":%d,\"real_address\":%d,\"llc\":%d,\"tll\":%d,\"suppressed\":%s,\"block\":\"%s\"",
-                current_pcb.job_id, real_address, current_pcb.llc, current_pcb.tll,
-                current_pcb.llc > current_pcb.tll ? "true" : "false", esc_block);
-
     if (current_pcb.llc > current_pcb.tll) {
         TERMINATE(EM_LINE_LIMIT);
         return;
     }
+
+    int base_word = (real_address / WORDS_PER_FRAME) * WORDS_PER_FRAME;
 
     /* Write 40 raw memory bytes (including padding nulls) to output file */
     for (int i = 0; i < WORDS_PER_FRAME; i++) {
@@ -258,11 +235,6 @@ void TERMINATE(int EM) {
     if (EM == EM_LINE_LIMIT && reported_llc > current_pcb.tll) {
         reported_llc = current_pcb.tll;
     }
-
-    char esc_ir[16];
-    escape_trace_str(esc_ir, IR, 4);
-    TRACE_EVENT("TERMINATE", "\"job_id\":%d,\"em\":%d,\"message\":\"%s\",\"ic\":%d,\"ir\":\"%s\",\"ttc\":%d,\"llc\":%d",
-                current_pcb.job_id, EM, msg, IC, esc_ir, current_pcb.ttc, reported_llc);
 
     fprintf(fp_out, "JOB ID   :  %d\n", current_pcb.job_id);
     fprintf(fp_out, "%s\n", msg);
