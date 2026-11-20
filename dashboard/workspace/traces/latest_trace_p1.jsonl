@@ -1,0 +1,859 @@
+{"step":1,"event":"JOB_START","job_id":102,"card":"$AMJ010200210001\n"}
+{"step":2,"event":"LOAD_PROG","job_id":102,"block":0,"card":"GD30LR36SR40LR35SR41LR34SR42LR33SR43LR32 \n"}
+{"step":3,"event":"MEM_SET","word":0,"content":"GD30"}
+{"step":4,"event":"MEM_SET","word":1,"content":"LR36"}
+{"step":5,"event":"MEM_SET","word":2,"content":"SR40"}
+{"step":6,"event":"MEM_SET","word":3,"content":"LR35"}
+{"step":7,"event":"MEM_SET","word":4,"content":"SR41"}
+{"step":8,"event":"MEM_SET","word":5,"content":"LR34"}
+{"step":9,"event":"MEM_SET","word":6,"content":"SR42"}
+{"step":10,"event":"MEM_SET","word":7,"content":"LR33"}
+{"step":11,"event":"MEM_SET","word":8,"content":"SR43"}
+{"step":12,"event":"MEM_SET","word":9,"content":"LR32"}
+{"step":13,"event":"LOAD_PROG","job_id":102,"block":10,"card":"SR44LR31SR45LR30SR46LR39SR47SR38SR49PD40 \n"}
+{"step":14,"event":"MEM_SET","word":10,"content":"SR44"}
+{"step":15,"event":"MEM_SET","word":11,"content":"LR31"}
+{"step":16,"event":"MEM_SET","word":12,"content":"SR45"}
+{"step":17,"event":"MEM_SET","word":13,"content":"LR30"}
+{"step":18,"event":"MEM_SET","word":14,"content":"SR46"}
+{"step":19,"event":"MEM_SET","word":15,"content":"LR39"}
+{"step":20,"event":"MEM_SET","word":16,"content":"SR47"}
+{"step":21,"event":"MEM_SET","word":17,"content":"SR38"}
+{"step":22,"event":"MEM_SET","word":18,"content":"SR49"}
+{"step":23,"event":"MEM_SET","word":19,"content":"PD40"}
+{"step":24,"event":"LOAD_PROG","job_id":102,"block":20,"card":"H \n"}
+{"step":25,"event":"MEM_SET","word":20,"content":"H "}
+{"step":26,"event":"CARD_DTA","job_id":102}
+{"step":27,"event":"START_EXEC","job_id":102,"ic":0}
+{"step":28,"event":"FETCH","job_id":102,"ic":0,"ir":"GD30"}
+{"step":29,"event":"DECODE","job_id":102,"opcode":"GD","operand":"30"}
+{"step":30,"event":"INTERRUPT","job_id":102,"si":1}
+{"step":31,"event":"SERVICE_READ","job_id":102,"block":30,"card":"AMA  PANANAL A CPLANN A A MA \n"}
+{"step":32,"event":"MEM_SET","word":30,"content":"AMA "}
+{"step":33,"event":"MEM_SET","word":31,"content":" PAN"}
+{"step":34,"event":"MEM_SET","word":32,"content":"ANAL"}
+{"step":35,"event":"MEM_SET","word":33,"content":" A C"}
+{"step":36,"event":"MEM_SET","word":34,"content":"PLAN"}
+{"step":37,"event":"MEM_SET","word":35,"content":"N A "}
+{"step":38,"event":"MEM_SET","word":36,"content":"A MA"}
+{"step":39,"event":"MEM_SET","word":37,"content":" "}
+{"step":40,"event":"EXECUTE","job_id":102,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":41,"event":"FETCH","job_id":102,"ic":1,"ir":"LR36"}
+{"step":42,"event":"DECODE","job_id":102,"opcode":"LR","operand":"36"}
+{"step":43,"event":"EXECUTE","job_id":102,"opcode":"LR","r":"A MA","c":0,"ic":2}
+{"step":44,"event":"FETCH","job_id":102,"ic":2,"ir":"SR40"}
+{"step":45,"event":"DECODE","job_id":102,"opcode":"SR","operand":"40"}
+{"step":46,"event":"MEM_SET","word":40,"content":"A MA"}
+{"step":47,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"A MA","c":0,"ic":3}
+{"step":48,"event":"FETCH","job_id":102,"ic":3,"ir":"LR35"}
+{"step":49,"event":"DECODE","job_id":102,"opcode":"LR","operand":"35"}
+{"step":50,"event":"EXECUTE","job_id":102,"opcode":"LR","r":"N A ","c":0,"ic":4}
+{"step":51,"event":"FETCH","job_id":102,"ic":4,"ir":"SR41"}
+{"step":52,"event":"DECODE","job_id":102,"opcode":"SR","operand":"41"}
+{"step":53,"event":"MEM_SET","word":41,"content":"N A "}
+{"step":54,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"N A ","c":0,"ic":5}
+{"step":55,"event":"FETCH","job_id":102,"ic":5,"ir":"LR34"}
+{"step":56,"event":"DECODE","job_id":102,"opcode":"LR","operand":"34"}
+{"step":57,"event":"EXECUTE","job_id":102,"opcode":"LR","r":"PLAN","c":0,"ic":6}
+{"step":58,"event":"FETCH","job_id":102,"ic":6,"ir":"SR42"}
+{"step":59,"event":"DECODE","job_id":102,"opcode":"SR","operand":"42"}
+{"step":60,"event":"MEM_SET","word":42,"content":"PLAN"}
+{"step":61,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"PLAN","c":0,"ic":7}
+{"step":62,"event":"FETCH","job_id":102,"ic":7,"ir":"LR33"}
+{"step":63,"event":"DECODE","job_id":102,"opcode":"LR","operand":"33"}
+{"step":64,"event":"EXECUTE","job_id":102,"opcode":"LR","r":" A C","c":0,"ic":8}
+{"step":65,"event":"FETCH","job_id":102,"ic":8,"ir":"SR43"}
+{"step":66,"event":"DECODE","job_id":102,"opcode":"SR","operand":"43"}
+{"step":67,"event":"MEM_SET","word":43,"content":" A C"}
+{"step":68,"event":"EXECUTE","job_id":102,"opcode":"SR","r":" A C","c":0,"ic":9}
+{"step":69,"event":"FETCH","job_id":102,"ic":9,"ir":"LR32"}
+{"step":70,"event":"DECODE","job_id":102,"opcode":"LR","operand":"32"}
+{"step":71,"event":"EXECUTE","job_id":102,"opcode":"LR","r":"ANAL","c":0,"ic":10}
+{"step":72,"event":"FETCH","job_id":102,"ic":10,"ir":"SR44"}
+{"step":73,"event":"DECODE","job_id":102,"opcode":"SR","operand":"44"}
+{"step":74,"event":"MEM_SET","word":44,"content":"ANAL"}
+{"step":75,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"ANAL","c":0,"ic":11}
+{"step":76,"event":"FETCH","job_id":102,"ic":11,"ir":"LR31"}
+{"step":77,"event":"DECODE","job_id":102,"opcode":"LR","operand":"31"}
+{"step":78,"event":"EXECUTE","job_id":102,"opcode":"LR","r":" PAN","c":0,"ic":12}
+{"step":79,"event":"FETCH","job_id":102,"ic":12,"ir":"SR45"}
+{"step":80,"event":"DECODE","job_id":102,"opcode":"SR","operand":"45"}
+{"step":81,"event":"MEM_SET","word":45,"content":" PAN"}
+{"step":82,"event":"EXECUTE","job_id":102,"opcode":"SR","r":" PAN","c":0,"ic":13}
+{"step":83,"event":"FETCH","job_id":102,"ic":13,"ir":"LR30"}
+{"step":84,"event":"DECODE","job_id":102,"opcode":"LR","operand":"30"}
+{"step":85,"event":"EXECUTE","job_id":102,"opcode":"LR","r":"AMA ","c":0,"ic":14}
+{"step":86,"event":"FETCH","job_id":102,"ic":14,"ir":"SR46"}
+{"step":87,"event":"DECODE","job_id":102,"opcode":"SR","operand":"46"}
+{"step":88,"event":"MEM_SET","word":46,"content":"AMA "}
+{"step":89,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"AMA ","c":0,"ic":15}
+{"step":90,"event":"FETCH","job_id":102,"ic":15,"ir":"LR39"}
+{"step":91,"event":"DECODE","job_id":102,"opcode":"LR","operand":"39"}
+{"step":92,"event":"EXECUTE","job_id":102,"opcode":"LR","r":"","c":0,"ic":16}
+{"step":93,"event":"FETCH","job_id":102,"ic":16,"ir":"SR47"}
+{"step":94,"event":"DECODE","job_id":102,"opcode":"SR","operand":"47"}
+{"step":95,"event":"MEM_SET","word":47,"content":""}
+{"step":96,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"","c":0,"ic":17}
+{"step":97,"event":"FETCH","job_id":102,"ic":17,"ir":"SR38"}
+{"step":98,"event":"DECODE","job_id":102,"opcode":"SR","operand":"38"}
+{"step":99,"event":"MEM_SET","word":38,"content":""}
+{"step":100,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"","c":0,"ic":18}
+{"step":101,"event":"FETCH","job_id":102,"ic":18,"ir":"SR49"}
+{"step":102,"event":"DECODE","job_id":102,"opcode":"SR","operand":"49"}
+{"step":103,"event":"MEM_SET","word":49,"content":""}
+{"step":104,"event":"EXECUTE","job_id":102,"opcode":"SR","r":"","c":0,"ic":19}
+{"step":105,"event":"FETCH","job_id":102,"ic":19,"ir":"PD40"}
+{"step":106,"event":"DECODE","job_id":102,"opcode":"PD","operand":"40"}
+{"step":107,"event":"INTERRUPT","job_id":102,"si":2}
+{"step":108,"event":"SERVICE_WRITE","job_id":102,"block":40,"output":"A MAN A PLAN A CANAL PANAMA "}
+{"step":109,"event":"EXECUTE","job_id":102,"opcode":"PD","r":"","c":0,"ic":20}
+{"step":110,"event":"FETCH","job_id":102,"ic":20,"ir":"H "}
+{"step":111,"event":"EXECUTE","job_id":102,"opcode":"H","r":"","c":0,"ic":21}
+{"step":112,"event":"INTERRUPT","job_id":102,"si":3}
+{"step":113,"event":"TERMINATE","job_id":102,"ic":21}
+{"step":114,"event":"JOB_START","job_id":201,"card":"$AMJ020100120003\n"}
+{"step":115,"event":"LOAD_PROG","job_id":201,"block":0,"card":"GD20LR20GD30CR33BT07GD40PD40PD20PD30GD40\n"}
+{"step":116,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":117,"event":"MEM_SET","word":1,"content":"LR20"}
+{"step":118,"event":"MEM_SET","word":2,"content":"GD30"}
+{"step":119,"event":"MEM_SET","word":3,"content":"CR33"}
+{"step":120,"event":"MEM_SET","word":4,"content":"BT07"}
+{"step":121,"event":"MEM_SET","word":5,"content":"GD40"}
+{"step":122,"event":"MEM_SET","word":6,"content":"PD40"}
+{"step":123,"event":"MEM_SET","word":7,"content":"PD20"}
+{"step":124,"event":"MEM_SET","word":8,"content":"PD30"}
+{"step":125,"event":"MEM_SET","word":9,"content":"GD40"}
+{"step":126,"event":"LOAD_PROG","job_id":201,"block":10,"card":"PD40H\n"}
+{"step":127,"event":"MEM_SET","word":10,"content":"PD40"}
+{"step":128,"event":"MEM_SET","word":11,"content":"H"}
+{"step":129,"event":"CARD_DTA","job_id":201}
+{"step":130,"event":"START_EXEC","job_id":201,"ic":0}
+{"step":131,"event":"FETCH","job_id":201,"ic":0,"ir":"GD20"}
+{"step":132,"event":"DECODE","job_id":201,"opcode":"GD","operand":"20"}
+{"step":133,"event":"INTERRUPT","job_id":201,"si":1}
+{"step":134,"event":"SERVICE_READ","job_id":201,"block":20,"card":"HOPE FOR IT\n"}
+{"step":135,"event":"MEM_SET","word":20,"content":"HOPE"}
+{"step":136,"event":"MEM_SET","word":21,"content":" FOR"}
+{"step":137,"event":"MEM_SET","word":22,"content":" IT"}
+{"step":138,"event":"EXECUTE","job_id":201,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":139,"event":"FETCH","job_id":201,"ic":1,"ir":"LR20"}
+{"step":140,"event":"DECODE","job_id":201,"opcode":"LR","operand":"20"}
+{"step":141,"event":"EXECUTE","job_id":201,"opcode":"LR","r":"HOPE","c":0,"ic":2}
+{"step":142,"event":"FETCH","job_id":201,"ic":2,"ir":"GD30"}
+{"step":143,"event":"DECODE","job_id":201,"opcode":"GD","operand":"30"}
+{"step":144,"event":"INTERRUPT","job_id":201,"si":1}
+{"step":145,"event":"SERVICE_READ","job_id":201,"block":30,"card":"THERE IS NO HOPE\n"}
+{"step":146,"event":"MEM_SET","word":30,"content":"THER"}
+{"step":147,"event":"MEM_SET","word":31,"content":"E IS"}
+{"step":148,"event":"MEM_SET","word":32,"content":" NO "}
+{"step":149,"event":"MEM_SET","word":33,"content":"HOPE"}
+{"step":150,"event":"EXECUTE","job_id":201,"opcode":"GD","r":"HOPE","c":0,"ic":3}
+{"step":151,"event":"FETCH","job_id":201,"ic":3,"ir":"CR33"}
+{"step":152,"event":"DECODE","job_id":201,"opcode":"CR","operand":"33"}
+{"step":153,"event":"EXECUTE","job_id":201,"opcode":"CR","r":"HOPE","c":1,"ic":4}
+{"step":154,"event":"FETCH","job_id":201,"ic":4,"ir":"BT07"}
+{"step":155,"event":"DECODE","job_id":201,"opcode":"BT","operand":"07"}
+{"step":156,"event":"EXECUTE","job_id":201,"opcode":"BT","r":"HOPE","c":1,"ic":7}
+{"step":157,"event":"FETCH","job_id":201,"ic":7,"ir":"PD20"}
+{"step":158,"event":"DECODE","job_id":201,"opcode":"PD","operand":"20"}
+{"step":159,"event":"INTERRUPT","job_id":201,"si":2}
+{"step":160,"event":"SERVICE_WRITE","job_id":201,"block":20,"output":"HOPE FOR IT"}
+{"step":161,"event":"EXECUTE","job_id":201,"opcode":"PD","r":"HOPE","c":1,"ic":8}
+{"step":162,"event":"FETCH","job_id":201,"ic":8,"ir":"PD30"}
+{"step":163,"event":"DECODE","job_id":201,"opcode":"PD","operand":"30"}
+{"step":164,"event":"INTERRUPT","job_id":201,"si":2}
+{"step":165,"event":"SERVICE_WRITE","job_id":201,"block":30,"output":"THERE IS NO HOPE"}
+{"step":166,"event":"EXECUTE","job_id":201,"opcode":"PD","r":"HOPE","c":1,"ic":9}
+{"step":167,"event":"FETCH","job_id":201,"ic":9,"ir":"GD40"}
+{"step":168,"event":"DECODE","job_id":201,"opcode":"GD","operand":"40"}
+{"step":169,"event":"INTERRUPT","job_id":201,"si":1}
+{"step":170,"event":"SERVICE_READ","job_id":201,"block":40,"card":"BUT STILL HOPE\n"}
+{"step":171,"event":"MEM_SET","word":40,"content":"BUT "}
+{"step":172,"event":"MEM_SET","word":41,"content":"STIL"}
+{"step":173,"event":"MEM_SET","word":42,"content":"L HO"}
+{"step":174,"event":"MEM_SET","word":43,"content":"PE"}
+{"step":175,"event":"EXECUTE","job_id":201,"opcode":"GD","r":"HOPE","c":1,"ic":10}
+{"step":176,"event":"FETCH","job_id":201,"ic":10,"ir":"PD40"}
+{"step":177,"event":"DECODE","job_id":201,"opcode":"PD","operand":"40"}
+{"step":178,"event":"INTERRUPT","job_id":201,"si":2}
+{"step":179,"event":"SERVICE_WRITE","job_id":201,"block":40,"output":"BUT STILL HOPE"}
+{"step":180,"event":"EXECUTE","job_id":201,"opcode":"PD","r":"HOPE","c":1,"ic":11}
+{"step":181,"event":"FETCH","job_id":201,"ic":11,"ir":"H"}
+{"step":182,"event":"EXECUTE","job_id":201,"opcode":"H","r":"HOPE","c":1,"ic":12}
+{"step":183,"event":"INTERRUPT","job_id":201,"si":3}
+{"step":184,"event":"TERMINATE","job_id":201,"ic":12}
+{"step":185,"event":"JOB_START","job_id":3,"card":"$AMJ000300170007\n"}
+{"step":186,"event":"LOAD_PROG","job_id":3,"block":0,"card":"GD20PD20GD30PD30GD40LR40SR20PD20PD30GD40\n"}
+{"step":187,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":188,"event":"MEM_SET","word":1,"content":"PD20"}
+{"step":189,"event":"MEM_SET","word":2,"content":"GD30"}
+{"step":190,"event":"MEM_SET","word":3,"content":"PD30"}
+{"step":191,"event":"MEM_SET","word":4,"content":"GD40"}
+{"step":192,"event":"MEM_SET","word":5,"content":"LR40"}
+{"step":193,"event":"MEM_SET","word":6,"content":"SR20"}
+{"step":194,"event":"MEM_SET","word":7,"content":"PD20"}
+{"step":195,"event":"MEM_SET","word":8,"content":"PD30"}
+{"step":196,"event":"MEM_SET","word":9,"content":"GD40"}
+{"step":197,"event":"LOAD_PROG","job_id":3,"block":10,"card":"LR40SR20PD20PD30GD50PD50H\n"}
+{"step":198,"event":"MEM_SET","word":10,"content":"LR40"}
+{"step":199,"event":"MEM_SET","word":11,"content":"SR20"}
+{"step":200,"event":"MEM_SET","word":12,"content":"PD20"}
+{"step":201,"event":"MEM_SET","word":13,"content":"PD30"}
+{"step":202,"event":"MEM_SET","word":14,"content":"GD50"}
+{"step":203,"event":"MEM_SET","word":15,"content":"PD50"}
+{"step":204,"event":"MEM_SET","word":16,"content":"H"}
+{"step":205,"event":"CARD_DTA","job_id":3}
+{"step":206,"event":"START_EXEC","job_id":3,"ic":0}
+{"step":207,"event":"FETCH","job_id":3,"ic":0,"ir":"GD20"}
+{"step":208,"event":"DECODE","job_id":3,"opcode":"GD","operand":"20"}
+{"step":209,"event":"INTERRUPT","job_id":3,"si":1}
+{"step":210,"event":"SERVICE_READ","job_id":3,"block":20,"card":"3 LITTLE PIGS WENT TO OS CLASS.\n"}
+{"step":211,"event":"MEM_SET","word":20,"content":"3 LI"}
+{"step":212,"event":"MEM_SET","word":21,"content":"TTLE"}
+{"step":213,"event":"MEM_SET","word":22,"content":" PIG"}
+{"step":214,"event":"MEM_SET","word":23,"content":"S WE"}
+{"step":215,"event":"MEM_SET","word":24,"content":"NT T"}
+{"step":216,"event":"MEM_SET","word":25,"content":"O OS"}
+{"step":217,"event":"MEM_SET","word":26,"content":" CLA"}
+{"step":218,"event":"MEM_SET","word":27,"content":"SS."}
+{"step":219,"event":"EXECUTE","job_id":3,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":220,"event":"FETCH","job_id":3,"ic":1,"ir":"PD20"}
+{"step":221,"event":"DECODE","job_id":3,"opcode":"PD","operand":"20"}
+{"step":222,"event":"INTERRUPT","job_id":3,"si":2}
+{"step":223,"event":"SERVICE_WRITE","job_id":3,"block":20,"output":"3 LITTLE PIGS WENT TO OS CLASS."}
+{"step":224,"event":"EXECUTE","job_id":3,"opcode":"PD","r":"","c":0,"ic":2}
+{"step":225,"event":"FETCH","job_id":3,"ic":2,"ir":"GD30"}
+{"step":226,"event":"DECODE","job_id":3,"opcode":"GD","operand":"30"}
+{"step":227,"event":"INTERRUPT","job_id":3,"si":1}
+{"step":228,"event":"SERVICE_READ","job_id":3,"block":30,"card":"THE WOLF ATE ONE!\n"}
+{"step":229,"event":"MEM_SET","word":30,"content":"THE "}
+{"step":230,"event":"MEM_SET","word":31,"content":"WOLF"}
+{"step":231,"event":"MEM_SET","word":32,"content":" ATE"}
+{"step":232,"event":"MEM_SET","word":33,"content":" ONE"}
+{"step":233,"event":"MEM_SET","word":34,"content":"!"}
+{"step":234,"event":"EXECUTE","job_id":3,"opcode":"GD","r":"","c":0,"ic":3}
+{"step":235,"event":"FETCH","job_id":3,"ic":3,"ir":"PD30"}
+{"step":236,"event":"DECODE","job_id":3,"opcode":"PD","operand":"30"}
+{"step":237,"event":"INTERRUPT","job_id":3,"si":2}
+{"step":238,"event":"SERVICE_WRITE","job_id":3,"block":30,"output":"THE WOLF ATE ONE!"}
+{"step":239,"event":"EXECUTE","job_id":3,"opcode":"PD","r":"","c":0,"ic":4}
+{"step":240,"event":"FETCH","job_id":3,"ic":4,"ir":"GD40"}
+{"step":241,"event":"DECODE","job_id":3,"opcode":"GD","operand":"40"}
+{"step":242,"event":"INTERRUPT","job_id":3,"si":1}
+{"step":243,"event":"SERVICE_READ","job_id":3,"block":40,"card":"2 LI\n"}
+{"step":244,"event":"MEM_SET","word":40,"content":"2 LI"}
+{"step":245,"event":"EXECUTE","job_id":3,"opcode":"GD","r":"","c":0,"ic":5}
+{"step":246,"event":"FETCH","job_id":3,"ic":5,"ir":"LR40"}
+{"step":247,"event":"DECODE","job_id":3,"opcode":"LR","operand":"40"}
+{"step":248,"event":"EXECUTE","job_id":3,"opcode":"LR","r":"2 LI","c":0,"ic":6}
+{"step":249,"event":"FETCH","job_id":3,"ic":6,"ir":"SR20"}
+{"step":250,"event":"DECODE","job_id":3,"opcode":"SR","operand":"20"}
+{"step":251,"event":"MEM_SET","word":20,"content":"2 LI"}
+{"step":252,"event":"EXECUTE","job_id":3,"opcode":"SR","r":"2 LI","c":0,"ic":7}
+{"step":253,"event":"FETCH","job_id":3,"ic":7,"ir":"PD20"}
+{"step":254,"event":"DECODE","job_id":3,"opcode":"PD","operand":"20"}
+{"step":255,"event":"INTERRUPT","job_id":3,"si":2}
+{"step":256,"event":"SERVICE_WRITE","job_id":3,"block":20,"output":"2 LITTLE PIGS WENT TO OS CLASS."}
+{"step":257,"event":"EXECUTE","job_id":3,"opcode":"PD","r":"2 LI","c":0,"ic":8}
+{"step":258,"event":"FETCH","job_id":3,"ic":8,"ir":"PD30"}
+{"step":259,"event":"DECODE","job_id":3,"opcode":"PD","operand":"30"}
+{"step":260,"event":"INTERRUPT","job_id":3,"si":2}
+{"step":261,"event":"SERVICE_WRITE","job_id":3,"block":30,"output":"THE WOLF ATE ONE!"}
+{"step":262,"event":"EXECUTE","job_id":3,"opcode":"PD","r":"2 LI","c":0,"ic":9}
+{"step":263,"event":"FETCH","job_id":3,"ic":9,"ir":"GD40"}
+{"step":264,"event":"DECODE","job_id":3,"opcode":"GD","operand":"40"}
+{"step":265,"event":"INTERRUPT","job_id":3,"si":1}
+{"step":266,"event":"SERVICE_READ","job_id":3,"block":40,"card":"1 LI\n"}
+{"step":267,"event":"MEM_SET","word":40,"content":"1 LI"}
+{"step":268,"event":"EXECUTE","job_id":3,"opcode":"GD","r":"2 LI","c":0,"ic":10}
+{"step":269,"event":"FETCH","job_id":3,"ic":10,"ir":"LR40"}
+{"step":270,"event":"DECODE","job_id":3,"opcode":"LR","operand":"40"}
+{"step":271,"event":"EXECUTE","job_id":3,"opcode":"LR","r":"1 LI","c":0,"ic":11}
+{"step":272,"event":"FETCH","job_id":3,"ic":11,"ir":"SR20"}
+{"step":273,"event":"DECODE","job_id":3,"opcode":"SR","operand":"20"}
+{"step":274,"event":"MEM_SET","word":20,"content":"1 LI"}
+{"step":275,"event":"EXECUTE","job_id":3,"opcode":"SR","r":"1 LI","c":0,"ic":12}
+{"step":276,"event":"FETCH","job_id":3,"ic":12,"ir":"PD20"}
+{"step":277,"event":"DECODE","job_id":3,"opcode":"PD","operand":"20"}
+{"step":278,"event":"INTERRUPT","job_id":3,"si":2}
+{"step":279,"event":"SERVICE_WRITE","job_id":3,"block":20,"output":"1 LITTLE PIGS WENT TO OS CLASS."}
+{"step":280,"event":"EXECUTE","job_id":3,"opcode":"PD","r":"1 LI","c":0,"ic":13}
+{"step":281,"event":"FETCH","job_id":3,"ic":13,"ir":"PD30"}
+{"step":282,"event":"DECODE","job_id":3,"opcode":"PD","operand":"30"}
+{"step":283,"event":"INTERRUPT","job_id":3,"si":2}
+{"step":284,"event":"SERVICE_WRITE","job_id":3,"block":30,"output":"THE WOLF ATE ONE!"}
+{"step":285,"event":"EXECUTE","job_id":3,"opcode":"PD","r":"1 LI","c":0,"ic":14}
+{"step":286,"event":"FETCH","job_id":3,"ic":14,"ir":"GD50"}
+{"step":287,"event":"DECODE","job_id":3,"opcode":"GD","operand":"50"}
+{"step":288,"event":"INTERRUPT","job_id":3,"si":1}
+{"step":289,"event":"SERVICE_READ","job_id":3,"block":50,"card":"CLASS DISMISSED!\n"}
+{"step":290,"event":"MEM_SET","word":50,"content":"CLAS"}
+{"step":291,"event":"MEM_SET","word":51,"content":"S DI"}
+{"step":292,"event":"MEM_SET","word":52,"content":"SMIS"}
+{"step":293,"event":"MEM_SET","word":53,"content":"SED!"}
+{"step":294,"event":"EXECUTE","job_id":3,"opcode":"GD","r":"1 LI","c":0,"ic":15}
+{"step":295,"event":"FETCH","job_id":3,"ic":15,"ir":"PD50"}
+{"step":296,"event":"DECODE","job_id":3,"opcode":"PD","operand":"50"}
+{"step":297,"event":"INTERRUPT","job_id":3,"si":2}
+{"step":298,"event":"SERVICE_WRITE","job_id":3,"block":50,"output":"CLASS DISMISSED!"}
+{"step":299,"event":"EXECUTE","job_id":3,"opcode":"PD","r":"1 LI","c":0,"ic":16}
+{"step":300,"event":"FETCH","job_id":3,"ic":16,"ir":"H"}
+{"step":301,"event":"EXECUTE","job_id":3,"opcode":"H","r":"1 LI","c":0,"ic":17}
+{"step":302,"event":"INTERRUPT","job_id":3,"si":3}
+{"step":303,"event":"TERMINATE","job_id":3,"ic":17}
+{"step":304,"event":"JOB_START","job_id":202,"card":"$AMJ020200160005\n"}
+{"step":305,"event":"LOAD_PROG","job_id":202,"block":0,"card":"GD20PD20LR20SR30SR31PD30SR40SR41SR42PD40\n"}
+{"step":306,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":307,"event":"MEM_SET","word":1,"content":"PD20"}
+{"step":308,"event":"MEM_SET","word":2,"content":"LR20"}
+{"step":309,"event":"MEM_SET","word":3,"content":"SR30"}
+{"step":310,"event":"MEM_SET","word":4,"content":"SR31"}
+{"step":311,"event":"MEM_SET","word":5,"content":"PD30"}
+{"step":312,"event":"MEM_SET","word":6,"content":"SR40"}
+{"step":313,"event":"MEM_SET","word":7,"content":"SR41"}
+{"step":314,"event":"MEM_SET","word":8,"content":"SR42"}
+{"step":315,"event":"MEM_SET","word":9,"content":"PD40"}
+{"step":316,"event":"LOAD_PROG","job_id":202,"block":10,"card":"SR50SR51PD50SR60PD60H\n"}
+{"step":317,"event":"MEM_SET","word":10,"content":"SR50"}
+{"step":318,"event":"MEM_SET","word":11,"content":"SR51"}
+{"step":319,"event":"MEM_SET","word":12,"content":"PD50"}
+{"step":320,"event":"MEM_SET","word":13,"content":"SR60"}
+{"step":321,"event":"MEM_SET","word":14,"content":"PD60"}
+{"step":322,"event":"MEM_SET","word":15,"content":"H"}
+{"step":323,"event":"CARD_DTA","job_id":202}
+{"step":324,"event":"START_EXEC","job_id":202,"ic":0}
+{"step":325,"event":"FETCH","job_id":202,"ic":0,"ir":"GD20"}
+{"step":326,"event":"DECODE","job_id":202,"opcode":"GD","operand":"20"}
+{"step":327,"event":"INTERRUPT","job_id":202,"si":1}
+{"step":328,"event":"SERVICE_READ","job_id":202,"block":20,"card":"*\n"}
+{"step":329,"event":"MEM_SET","word":20,"content":"*"}
+{"step":330,"event":"EXECUTE","job_id":202,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":331,"event":"FETCH","job_id":202,"ic":1,"ir":"PD20"}
+{"step":332,"event":"DECODE","job_id":202,"opcode":"PD","operand":"20"}
+{"step":333,"event":"INTERRUPT","job_id":202,"si":2}
+{"step":334,"event":"SERVICE_WRITE","job_id":202,"block":20,"output":"*"}
+{"step":335,"event":"EXECUTE","job_id":202,"opcode":"PD","r":"","c":0,"ic":2}
+{"step":336,"event":"FETCH","job_id":202,"ic":2,"ir":"LR20"}
+{"step":337,"event":"DECODE","job_id":202,"opcode":"LR","operand":"20"}
+{"step":338,"event":"EXECUTE","job_id":202,"opcode":"LR","r":"*","c":0,"ic":3}
+{"step":339,"event":"FETCH","job_id":202,"ic":3,"ir":"SR30"}
+{"step":340,"event":"DECODE","job_id":202,"opcode":"SR","operand":"30"}
+{"step":341,"event":"MEM_SET","word":30,"content":"*"}
+{"step":342,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":4}
+{"step":343,"event":"FETCH","job_id":202,"ic":4,"ir":"SR31"}
+{"step":344,"event":"DECODE","job_id":202,"opcode":"SR","operand":"31"}
+{"step":345,"event":"MEM_SET","word":31,"content":"*"}
+{"step":346,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":5}
+{"step":347,"event":"FETCH","job_id":202,"ic":5,"ir":"PD30"}
+{"step":348,"event":"DECODE","job_id":202,"opcode":"PD","operand":"30"}
+{"step":349,"event":"INTERRUPT","job_id":202,"si":2}
+{"step":350,"event":"SERVICE_WRITE","job_id":202,"block":30,"output":"**"}
+{"step":351,"event":"EXECUTE","job_id":202,"opcode":"PD","r":"*","c":0,"ic":6}
+{"step":352,"event":"FETCH","job_id":202,"ic":6,"ir":"SR40"}
+{"step":353,"event":"DECODE","job_id":202,"opcode":"SR","operand":"40"}
+{"step":354,"event":"MEM_SET","word":40,"content":"*"}
+{"step":355,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":7}
+{"step":356,"event":"FETCH","job_id":202,"ic":7,"ir":"SR41"}
+{"step":357,"event":"DECODE","job_id":202,"opcode":"SR","operand":"41"}
+{"step":358,"event":"MEM_SET","word":41,"content":"*"}
+{"step":359,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":8}
+{"step":360,"event":"FETCH","job_id":202,"ic":8,"ir":"SR42"}
+{"step":361,"event":"DECODE","job_id":202,"opcode":"SR","operand":"42"}
+{"step":362,"event":"MEM_SET","word":42,"content":"*"}
+{"step":363,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":9}
+{"step":364,"event":"FETCH","job_id":202,"ic":9,"ir":"PD40"}
+{"step":365,"event":"DECODE","job_id":202,"opcode":"PD","operand":"40"}
+{"step":366,"event":"INTERRUPT","job_id":202,"si":2}
+{"step":367,"event":"SERVICE_WRITE","job_id":202,"block":40,"output":"***"}
+{"step":368,"event":"EXECUTE","job_id":202,"opcode":"PD","r":"*","c":0,"ic":10}
+{"step":369,"event":"FETCH","job_id":202,"ic":10,"ir":"SR50"}
+{"step":370,"event":"DECODE","job_id":202,"opcode":"SR","operand":"50"}
+{"step":371,"event":"MEM_SET","word":50,"content":"*"}
+{"step":372,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":11}
+{"step":373,"event":"FETCH","job_id":202,"ic":11,"ir":"SR51"}
+{"step":374,"event":"DECODE","job_id":202,"opcode":"SR","operand":"51"}
+{"step":375,"event":"MEM_SET","word":51,"content":"*"}
+{"step":376,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":12}
+{"step":377,"event":"FETCH","job_id":202,"ic":12,"ir":"PD50"}
+{"step":378,"event":"DECODE","job_id":202,"opcode":"PD","operand":"50"}
+{"step":379,"event":"INTERRUPT","job_id":202,"si":2}
+{"step":380,"event":"SERVICE_WRITE","job_id":202,"block":50,"output":"**"}
+{"step":381,"event":"EXECUTE","job_id":202,"opcode":"PD","r":"*","c":0,"ic":13}
+{"step":382,"event":"FETCH","job_id":202,"ic":13,"ir":"SR60"}
+{"step":383,"event":"DECODE","job_id":202,"opcode":"SR","operand":"60"}
+{"step":384,"event":"MEM_SET","word":60,"content":"*"}
+{"step":385,"event":"EXECUTE","job_id":202,"opcode":"SR","r":"*","c":0,"ic":14}
+{"step":386,"event":"FETCH","job_id":202,"ic":14,"ir":"PD60"}
+{"step":387,"event":"DECODE","job_id":202,"opcode":"PD","operand":"60"}
+{"step":388,"event":"INTERRUPT","job_id":202,"si":2}
+{"step":389,"event":"SERVICE_WRITE","job_id":202,"block":60,"output":"*"}
+{"step":390,"event":"EXECUTE","job_id":202,"opcode":"PD","r":"*","c":0,"ic":15}
+{"step":391,"event":"FETCH","job_id":202,"ic":15,"ir":"H"}
+{"step":392,"event":"EXECUTE","job_id":202,"opcode":"H","r":"*","c":0,"ic":16}
+{"step":393,"event":"INTERRUPT","job_id":202,"si":3}
+{"step":394,"event":"TERMINATE","job_id":202,"ic":16}
+{"step":395,"event":"JOB_START","job_id":7,"card":"$AMJ000700200002\n"}
+{"step":396,"event":"LOAD_PROG","job_id":7,"block":0,"card":"GD50LR50SR67LR51SR66LR52SR65LR53SR64LR54\n"}
+{"step":397,"event":"MEM_SET","word":0,"content":"GD50"}
+{"step":398,"event":"MEM_SET","word":1,"content":"LR50"}
+{"step":399,"event":"MEM_SET","word":2,"content":"SR67"}
+{"step":400,"event":"MEM_SET","word":3,"content":"LR51"}
+{"step":401,"event":"MEM_SET","word":4,"content":"SR66"}
+{"step":402,"event":"MEM_SET","word":5,"content":"LR52"}
+{"step":403,"event":"MEM_SET","word":6,"content":"SR65"}
+{"step":404,"event":"MEM_SET","word":7,"content":"LR53"}
+{"step":405,"event":"MEM_SET","word":8,"content":"SR64"}
+{"step":406,"event":"MEM_SET","word":9,"content":"LR54"}
+{"step":407,"event":"LOAD_PROG","job_id":7,"block":10,"card":"SR63LR55SR62LR56SR61LR57SR60PD50PD60H\n"}
+{"step":408,"event":"MEM_SET","word":10,"content":"SR63"}
+{"step":409,"event":"MEM_SET","word":11,"content":"LR55"}
+{"step":410,"event":"MEM_SET","word":12,"content":"SR62"}
+{"step":411,"event":"MEM_SET","word":13,"content":"LR56"}
+{"step":412,"event":"MEM_SET","word":14,"content":"SR61"}
+{"step":413,"event":"MEM_SET","word":15,"content":"LR57"}
+{"step":414,"event":"MEM_SET","word":16,"content":"SR60"}
+{"step":415,"event":"MEM_SET","word":17,"content":"PD50"}
+{"step":416,"event":"MEM_SET","word":18,"content":"PD60"}
+{"step":417,"event":"MEM_SET","word":19,"content":"H"}
+{"step":418,"event":"CARD_DTA","job_id":7}
+{"step":419,"event":"START_EXEC","job_id":7,"ic":0}
+{"step":420,"event":"FETCH","job_id":7,"ic":0,"ir":"GD50"}
+{"step":421,"event":"DECODE","job_id":7,"opcode":"GD","operand":"50"}
+{"step":422,"event":"INTERRUPT","job_id":7,"si":1}
+{"step":423,"event":"SERVICE_READ","job_id":7,"block":50,"card":"   N   U   T   R   A   F   I   N\n"}
+{"step":424,"event":"MEM_SET","word":50,"content":"   N"}
+{"step":425,"event":"MEM_SET","word":51,"content":"   U"}
+{"step":426,"event":"MEM_SET","word":52,"content":"   T"}
+{"step":427,"event":"MEM_SET","word":53,"content":"   R"}
+{"step":428,"event":"MEM_SET","word":54,"content":"   A"}
+{"step":429,"event":"MEM_SET","word":55,"content":"   F"}
+{"step":430,"event":"MEM_SET","word":56,"content":"   I"}
+{"step":431,"event":"MEM_SET","word":57,"content":"   N"}
+{"step":432,"event":"EXECUTE","job_id":7,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":433,"event":"FETCH","job_id":7,"ic":1,"ir":"LR50"}
+{"step":434,"event":"DECODE","job_id":7,"opcode":"LR","operand":"50"}
+{"step":435,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   N","c":0,"ic":2}
+{"step":436,"event":"FETCH","job_id":7,"ic":2,"ir":"SR67"}
+{"step":437,"event":"DECODE","job_id":7,"opcode":"SR","operand":"67"}
+{"step":438,"event":"MEM_SET","word":67,"content":"   N"}
+{"step":439,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   N","c":0,"ic":3}
+{"step":440,"event":"FETCH","job_id":7,"ic":3,"ir":"LR51"}
+{"step":441,"event":"DECODE","job_id":7,"opcode":"LR","operand":"51"}
+{"step":442,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   U","c":0,"ic":4}
+{"step":443,"event":"FETCH","job_id":7,"ic":4,"ir":"SR66"}
+{"step":444,"event":"DECODE","job_id":7,"opcode":"SR","operand":"66"}
+{"step":445,"event":"MEM_SET","word":66,"content":"   U"}
+{"step":446,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   U","c":0,"ic":5}
+{"step":447,"event":"FETCH","job_id":7,"ic":5,"ir":"LR52"}
+{"step":448,"event":"DECODE","job_id":7,"opcode":"LR","operand":"52"}
+{"step":449,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   T","c":0,"ic":6}
+{"step":450,"event":"FETCH","job_id":7,"ic":6,"ir":"SR65"}
+{"step":451,"event":"DECODE","job_id":7,"opcode":"SR","operand":"65"}
+{"step":452,"event":"MEM_SET","word":65,"content":"   T"}
+{"step":453,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   T","c":0,"ic":7}
+{"step":454,"event":"FETCH","job_id":7,"ic":7,"ir":"LR53"}
+{"step":455,"event":"DECODE","job_id":7,"opcode":"LR","operand":"53"}
+{"step":456,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   R","c":0,"ic":8}
+{"step":457,"event":"FETCH","job_id":7,"ic":8,"ir":"SR64"}
+{"step":458,"event":"DECODE","job_id":7,"opcode":"SR","operand":"64"}
+{"step":459,"event":"MEM_SET","word":64,"content":"   R"}
+{"step":460,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   R","c":0,"ic":9}
+{"step":461,"event":"FETCH","job_id":7,"ic":9,"ir":"LR54"}
+{"step":462,"event":"DECODE","job_id":7,"opcode":"LR","operand":"54"}
+{"step":463,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   A","c":0,"ic":10}
+{"step":464,"event":"FETCH","job_id":7,"ic":10,"ir":"SR63"}
+{"step":465,"event":"DECODE","job_id":7,"opcode":"SR","operand":"63"}
+{"step":466,"event":"MEM_SET","word":63,"content":"   A"}
+{"step":467,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   A","c":0,"ic":11}
+{"step":468,"event":"FETCH","job_id":7,"ic":11,"ir":"LR55"}
+{"step":469,"event":"DECODE","job_id":7,"opcode":"LR","operand":"55"}
+{"step":470,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   F","c":0,"ic":12}
+{"step":471,"event":"FETCH","job_id":7,"ic":12,"ir":"SR62"}
+{"step":472,"event":"DECODE","job_id":7,"opcode":"SR","operand":"62"}
+{"step":473,"event":"MEM_SET","word":62,"content":"   F"}
+{"step":474,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   F","c":0,"ic":13}
+{"step":475,"event":"FETCH","job_id":7,"ic":13,"ir":"LR56"}
+{"step":476,"event":"DECODE","job_id":7,"opcode":"LR","operand":"56"}
+{"step":477,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   I","c":0,"ic":14}
+{"step":478,"event":"FETCH","job_id":7,"ic":14,"ir":"SR61"}
+{"step":479,"event":"DECODE","job_id":7,"opcode":"SR","operand":"61"}
+{"step":480,"event":"MEM_SET","word":61,"content":"   I"}
+{"step":481,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   I","c":0,"ic":15}
+{"step":482,"event":"FETCH","job_id":7,"ic":15,"ir":"LR57"}
+{"step":483,"event":"DECODE","job_id":7,"opcode":"LR","operand":"57"}
+{"step":484,"event":"EXECUTE","job_id":7,"opcode":"LR","r":"   N","c":0,"ic":16}
+{"step":485,"event":"FETCH","job_id":7,"ic":16,"ir":"SR60"}
+{"step":486,"event":"DECODE","job_id":7,"opcode":"SR","operand":"60"}
+{"step":487,"event":"MEM_SET","word":60,"content":"   N"}
+{"step":488,"event":"EXECUTE","job_id":7,"opcode":"SR","r":"   N","c":0,"ic":17}
+{"step":489,"event":"FETCH","job_id":7,"ic":17,"ir":"PD50"}
+{"step":490,"event":"DECODE","job_id":7,"opcode":"PD","operand":"50"}
+{"step":491,"event":"INTERRUPT","job_id":7,"si":2}
+{"step":492,"event":"SERVICE_WRITE","job_id":7,"block":50,"output":"   N   U   T   R   A   F   I   N"}
+{"step":493,"event":"EXECUTE","job_id":7,"opcode":"PD","r":"   N","c":0,"ic":18}
+{"step":494,"event":"FETCH","job_id":7,"ic":18,"ir":"PD60"}
+{"step":495,"event":"DECODE","job_id":7,"opcode":"PD","operand":"60"}
+{"step":496,"event":"INTERRUPT","job_id":7,"si":2}
+{"step":497,"event":"SERVICE_WRITE","job_id":7,"block":60,"output":"   N   I   F   A   R   T   U   N"}
+{"step":498,"event":"EXECUTE","job_id":7,"opcode":"PD","r":"   N","c":0,"ic":19}
+{"step":499,"event":"FETCH","job_id":7,"ic":19,"ir":"H"}
+{"step":500,"event":"EXECUTE","job_id":7,"opcode":"H","r":"   N","c":0,"ic":20}
+{"step":501,"event":"INTERRUPT","job_id":7,"si":3}
+{"step":502,"event":"TERMINATE","job_id":7,"ic":20}
+{"step":503,"event":"JOB_START","job_id":301,"card":"$AMJ030100100003\n"}
+{"step":504,"event":"LOAD_PROG","job_id":301,"block":0,"card":"GD20PD20GD30PD30LR20CR30BT10GD40PD40H\n"}
+{"step":505,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":506,"event":"MEM_SET","word":1,"content":"PD20"}
+{"step":507,"event":"MEM_SET","word":2,"content":"GD30"}
+{"step":508,"event":"MEM_SET","word":3,"content":"PD30"}
+{"step":509,"event":"MEM_SET","word":4,"content":"LR20"}
+{"step":510,"event":"MEM_SET","word":5,"content":"CR30"}
+{"step":511,"event":"MEM_SET","word":6,"content":"BT10"}
+{"step":512,"event":"MEM_SET","word":7,"content":"GD40"}
+{"step":513,"event":"MEM_SET","word":8,"content":"PD40"}
+{"step":514,"event":"MEM_SET","word":9,"content":"H"}
+{"step":515,"event":"CARD_DTA","job_id":301}
+{"step":516,"event":"START_EXEC","job_id":301,"ic":0}
+{"step":517,"event":"FETCH","job_id":301,"ic":0,"ir":"GD20"}
+{"step":518,"event":"DECODE","job_id":301,"opcode":"GD","operand":"20"}
+{"step":519,"event":"INTERRUPT","job_id":301,"si":1}
+{"step":520,"event":"SERVICE_READ","job_id":301,"block":20,"card":"VIT IS GOOD\n"}
+{"step":521,"event":"MEM_SET","word":20,"content":"VIT "}
+{"step":522,"event":"MEM_SET","word":21,"content":"IS G"}
+{"step":523,"event":"MEM_SET","word":22,"content":"OOD"}
+{"step":524,"event":"EXECUTE","job_id":301,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":525,"event":"FETCH","job_id":301,"ic":1,"ir":"PD20"}
+{"step":526,"event":"DECODE","job_id":301,"opcode":"PD","operand":"20"}
+{"step":527,"event":"INTERRUPT","job_id":301,"si":2}
+{"step":528,"event":"SERVICE_WRITE","job_id":301,"block":20,"output":"VIT IS GOOD"}
+{"step":529,"event":"EXECUTE","job_id":301,"opcode":"PD","r":"","c":0,"ic":2}
+{"step":530,"event":"FETCH","job_id":301,"ic":2,"ir":"GD30"}
+{"step":531,"event":"DECODE","job_id":301,"opcode":"GD","operand":"30"}
+{"step":532,"event":"INTERRUPT","job_id":301,"si":1}
+{"step":533,"event":"SERVICE_READ","job_id":301,"block":30,"card":"VIIT IS GOOD\n"}
+{"step":534,"event":"MEM_SET","word":30,"content":"VIIT"}
+{"step":535,"event":"MEM_SET","word":31,"content":" IS "}
+{"step":536,"event":"MEM_SET","word":32,"content":"GOOD"}
+{"step":537,"event":"EXECUTE","job_id":301,"opcode":"GD","r":"","c":0,"ic":3}
+{"step":538,"event":"FETCH","job_id":301,"ic":3,"ir":"PD30"}
+{"step":539,"event":"DECODE","job_id":301,"opcode":"PD","operand":"30"}
+{"step":540,"event":"INTERRUPT","job_id":301,"si":2}
+{"step":541,"event":"SERVICE_WRITE","job_id":301,"block":30,"output":"VIIT IS GOOD"}
+{"step":542,"event":"EXECUTE","job_id":301,"opcode":"PD","r":"","c":0,"ic":4}
+{"step":543,"event":"FETCH","job_id":301,"ic":4,"ir":"LR20"}
+{"step":544,"event":"DECODE","job_id":301,"opcode":"LR","operand":"20"}
+{"step":545,"event":"EXECUTE","job_id":301,"opcode":"LR","r":"VIT ","c":0,"ic":5}
+{"step":546,"event":"FETCH","job_id":301,"ic":5,"ir":"CR30"}
+{"step":547,"event":"DECODE","job_id":301,"opcode":"CR","operand":"30"}
+{"step":548,"event":"EXECUTE","job_id":301,"opcode":"CR","r":"VIT ","c":0,"ic":6}
+{"step":549,"event":"FETCH","job_id":301,"ic":6,"ir":"BT10"}
+{"step":550,"event":"DECODE","job_id":301,"opcode":"BT","operand":"10"}
+{"step":551,"event":"EXECUTE","job_id":301,"opcode":"BT","r":"VIT ","c":0,"ic":7}
+{"step":552,"event":"FETCH","job_id":301,"ic":7,"ir":"GD40"}
+{"step":553,"event":"DECODE","job_id":301,"opcode":"GD","operand":"40"}
+{"step":554,"event":"INTERRUPT","job_id":301,"si":1}
+{"step":555,"event":"SERVICE_READ","job_id":301,"block":40,"card":"BOTH ARE SISTER INSTITUTES\n"}
+{"step":556,"event":"MEM_SET","word":40,"content":"BOTH"}
+{"step":557,"event":"MEM_SET","word":41,"content":" ARE"}
+{"step":558,"event":"MEM_SET","word":42,"content":" SIS"}
+{"step":559,"event":"MEM_SET","word":43,"content":"TER "}
+{"step":560,"event":"MEM_SET","word":44,"content":"INST"}
+{"step":561,"event":"MEM_SET","word":45,"content":"ITUT"}
+{"step":562,"event":"MEM_SET","word":46,"content":"ES"}
+{"step":563,"event":"EXECUTE","job_id":301,"opcode":"GD","r":"VIT ","c":0,"ic":8}
+{"step":564,"event":"FETCH","job_id":301,"ic":8,"ir":"PD40"}
+{"step":565,"event":"DECODE","job_id":301,"opcode":"PD","operand":"40"}
+{"step":566,"event":"INTERRUPT","job_id":301,"si":2}
+{"step":567,"event":"SERVICE_WRITE","job_id":301,"block":40,"output":"BOTH ARE SISTER INSTITUTES"}
+{"step":568,"event":"EXECUTE","job_id":301,"opcode":"PD","r":"VIT ","c":0,"ic":9}
+{"step":569,"event":"FETCH","job_id":301,"ic":9,"ir":"H"}
+{"step":570,"event":"EXECUTE","job_id":301,"opcode":"H","r":"VIT ","c":0,"ic":10}
+{"step":571,"event":"INTERRUPT","job_id":301,"si":3}
+{"step":572,"event":"TERMINATE","job_id":301,"ic":10}
+{"step":573,"event":"JOB_START","job_id":302,"card":"$AMJ030200080003\n"}
+{"step":574,"event":"LOAD_PROG","job_id":302,"block":0,"card":"GD20PD20GD30PD30LR30SR20PD20H   \n"}
+{"step":575,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":576,"event":"MEM_SET","word":1,"content":"PD20"}
+{"step":577,"event":"MEM_SET","word":2,"content":"GD30"}
+{"step":578,"event":"MEM_SET","word":3,"content":"PD30"}
+{"step":579,"event":"MEM_SET","word":4,"content":"LR30"}
+{"step":580,"event":"MEM_SET","word":5,"content":"SR20"}
+{"step":581,"event":"MEM_SET","word":6,"content":"PD20"}
+{"step":582,"event":"MEM_SET","word":7,"content":"H   "}
+{"step":583,"event":"CARD_DTA","job_id":302}
+{"step":584,"event":"START_EXEC","job_id":302,"ic":0}
+{"step":585,"event":"FETCH","job_id":302,"ic":0,"ir":"GD20"}
+{"step":586,"event":"DECODE","job_id":302,"opcode":"GD","operand":"20"}
+{"step":587,"event":"INTERRUPT","job_id":302,"si":1}
+{"step":588,"event":"SERVICE_READ","job_id":302,"block":20,"card":"CAT CAN EAT RAT\n"}
+{"step":589,"event":"MEM_SET","word":20,"content":"CAT "}
+{"step":590,"event":"MEM_SET","word":21,"content":"CAN "}
+{"step":591,"event":"MEM_SET","word":22,"content":"EAT "}
+{"step":592,"event":"MEM_SET","word":23,"content":"RAT"}
+{"step":593,"event":"EXECUTE","job_id":302,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":594,"event":"FETCH","job_id":302,"ic":1,"ir":"PD20"}
+{"step":595,"event":"DECODE","job_id":302,"opcode":"PD","operand":"20"}
+{"step":596,"event":"INTERRUPT","job_id":302,"si":2}
+{"step":597,"event":"SERVICE_WRITE","job_id":302,"block":20,"output":"CAT CAN EAT RAT"}
+{"step":598,"event":"EXECUTE","job_id":302,"opcode":"PD","r":"","c":0,"ic":2}
+{"step":599,"event":"FETCH","job_id":302,"ic":2,"ir":"GD30"}
+{"step":600,"event":"DECODE","job_id":302,"opcode":"GD","operand":"30"}
+{"step":601,"event":"INTERRUPT","job_id":302,"si":1}
+{"step":602,"event":"SERVICE_READ","job_id":302,"block":30,"card":"RAT CAN NOT EAT CAT\n"}
+{"step":603,"event":"MEM_SET","word":30,"content":"RAT "}
+{"step":604,"event":"MEM_SET","word":31,"content":"CAN "}
+{"step":605,"event":"MEM_SET","word":32,"content":"NOT "}
+{"step":606,"event":"MEM_SET","word":33,"content":"EAT "}
+{"step":607,"event":"MEM_SET","word":34,"content":"CAT"}
+{"step":608,"event":"EXECUTE","job_id":302,"opcode":"GD","r":"","c":0,"ic":3}
+{"step":609,"event":"FETCH","job_id":302,"ic":3,"ir":"PD30"}
+{"step":610,"event":"DECODE","job_id":302,"opcode":"PD","operand":"30"}
+{"step":611,"event":"INTERRUPT","job_id":302,"si":2}
+{"step":612,"event":"SERVICE_WRITE","job_id":302,"block":30,"output":"RAT CAN NOT EAT CAT"}
+{"step":613,"event":"EXECUTE","job_id":302,"opcode":"PD","r":"","c":0,"ic":4}
+{"step":614,"event":"FETCH","job_id":302,"ic":4,"ir":"LR30"}
+{"step":615,"event":"DECODE","job_id":302,"opcode":"LR","operand":"30"}
+{"step":616,"event":"EXECUTE","job_id":302,"opcode":"LR","r":"RAT ","c":0,"ic":5}
+{"step":617,"event":"FETCH","job_id":302,"ic":5,"ir":"SR20"}
+{"step":618,"event":"DECODE","job_id":302,"opcode":"SR","operand":"20"}
+{"step":619,"event":"MEM_SET","word":20,"content":"RAT "}
+{"step":620,"event":"EXECUTE","job_id":302,"opcode":"SR","r":"RAT ","c":0,"ic":6}
+{"step":621,"event":"FETCH","job_id":302,"ic":6,"ir":"PD20"}
+{"step":622,"event":"DECODE","job_id":302,"opcode":"PD","operand":"20"}
+{"step":623,"event":"INTERRUPT","job_id":302,"si":2}
+{"step":624,"event":"SERVICE_WRITE","job_id":302,"block":20,"output":"RAT CAN EAT RAT"}
+{"step":625,"event":"EXECUTE","job_id":302,"opcode":"PD","r":"RAT ","c":0,"ic":7}
+{"step":626,"event":"FETCH","job_id":302,"ic":7,"ir":"H   "}
+{"step":627,"event":"EXECUTE","job_id":302,"opcode":"H","r":"RAT ","c":0,"ic":8}
+{"step":628,"event":"INTERRUPT","job_id":302,"si":3}
+{"step":629,"event":"TERMINATE","job_id":302,"ic":8}
+{"step":630,"event":"JOB_START","job_id":101,"card":"$AMJ010100040001\n"}
+{"step":631,"event":"LOAD_PROG","job_id":101,"block":0,"card":"GD20LR22SR25PD20H   \n"}
+{"step":632,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":633,"event":"MEM_SET","word":1,"content":"LR22"}
+{"step":634,"event":"MEM_SET","word":2,"content":"SR25"}
+{"step":635,"event":"MEM_SET","word":3,"content":"PD20"}
+{"step":636,"event":"MEM_SET","word":4,"content":"H   "}
+{"step":637,"event":"CARD_DTA","job_id":101}
+{"step":638,"event":"START_EXEC","job_id":101,"ic":0}
+{"step":639,"event":"FETCH","job_id":101,"ic":0,"ir":"GD20"}
+{"step":640,"event":"DECODE","job_id":101,"opcode":"GD","operand":"20"}
+{"step":641,"event":"INTERRUPT","job_id":101,"si":1}
+{"step":642,"event":"SERVICE_READ","job_id":101,"block":20,"card":"I LIKE THIS PEN OF  \n"}
+{"step":643,"event":"MEM_SET","word":20,"content":"I LI"}
+{"step":644,"event":"MEM_SET","word":21,"content":"KE T"}
+{"step":645,"event":"MEM_SET","word":22,"content":"HIS "}
+{"step":646,"event":"MEM_SET","word":23,"content":"PEN "}
+{"step":647,"event":"MEM_SET","word":24,"content":"OF  "}
+{"step":648,"event":"EXECUTE","job_id":101,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":649,"event":"FETCH","job_id":101,"ic":1,"ir":"LR22"}
+{"step":650,"event":"DECODE","job_id":101,"opcode":"LR","operand":"22"}
+{"step":651,"event":"EXECUTE","job_id":101,"opcode":"LR","r":"HIS ","c":0,"ic":2}
+{"step":652,"event":"FETCH","job_id":101,"ic":2,"ir":"SR25"}
+{"step":653,"event":"DECODE","job_id":101,"opcode":"SR","operand":"25"}
+{"step":654,"event":"MEM_SET","word":25,"content":"HIS "}
+{"step":655,"event":"EXECUTE","job_id":101,"opcode":"SR","r":"HIS ","c":0,"ic":3}
+{"step":656,"event":"FETCH","job_id":101,"ic":3,"ir":"PD20"}
+{"step":657,"event":"DECODE","job_id":101,"opcode":"PD","operand":"20"}
+{"step":658,"event":"INTERRUPT","job_id":101,"si":2}
+{"step":659,"event":"SERVICE_WRITE","job_id":101,"block":20,"output":"I LIKE THIS PEN OF  HIS "}
+{"step":660,"event":"EXECUTE","job_id":101,"opcode":"PD","r":"HIS ","c":0,"ic":4}
+{"step":661,"event":"FETCH","job_id":101,"ic":4,"ir":"H   "}
+{"step":662,"event":"EXECUTE","job_id":101,"opcode":"H","r":"HIS ","c":0,"ic":5}
+{"step":663,"event":"INTERRUPT","job_id":101,"si":3}
+{"step":664,"event":"TERMINATE","job_id":101,"ic":5}
+{"step":665,"event":"JOB_START","job_id":401,"card":"$AMJ040100120004\n"}
+{"step":666,"event":"LOAD_PROG","job_id":401,"block":0,"card":"GD20PD20GD30PD30GD40GD50LR20CR30BT10PD40\n"}
+{"step":667,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":668,"event":"MEM_SET","word":1,"content":"PD20"}
+{"step":669,"event":"MEM_SET","word":2,"content":"GD30"}
+{"step":670,"event":"MEM_SET","word":3,"content":"PD30"}
+{"step":671,"event":"MEM_SET","word":4,"content":"GD40"}
+{"step":672,"event":"MEM_SET","word":5,"content":"GD50"}
+{"step":673,"event":"MEM_SET","word":6,"content":"LR20"}
+{"step":674,"event":"MEM_SET","word":7,"content":"CR30"}
+{"step":675,"event":"MEM_SET","word":8,"content":"BT10"}
+{"step":676,"event":"MEM_SET","word":9,"content":"PD40"}
+{"step":677,"event":"LOAD_PROG","job_id":401,"block":10,"card":"PD50H   \n"}
+{"step":678,"event":"MEM_SET","word":10,"content":"PD50"}
+{"step":679,"event":"MEM_SET","word":11,"content":"H   "}
+{"step":680,"event":"CARD_DTA","job_id":401}
+{"step":681,"event":"START_EXEC","job_id":401,"ic":0}
+{"step":682,"event":"FETCH","job_id":401,"ic":0,"ir":"GD20"}
+{"step":683,"event":"DECODE","job_id":401,"opcode":"GD","operand":"20"}
+{"step":684,"event":"INTERRUPT","job_id":401,"si":1}
+{"step":685,"event":"SERVICE_READ","job_id":401,"block":20,"card":"ABCD\n"}
+{"step":686,"event":"MEM_SET","word":20,"content":"ABCD"}
+{"step":687,"event":"EXECUTE","job_id":401,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":688,"event":"FETCH","job_id":401,"ic":1,"ir":"PD20"}
+{"step":689,"event":"DECODE","job_id":401,"opcode":"PD","operand":"20"}
+{"step":690,"event":"INTERRUPT","job_id":401,"si":2}
+{"step":691,"event":"SERVICE_WRITE","job_id":401,"block":20,"output":"ABCD"}
+{"step":692,"event":"EXECUTE","job_id":401,"opcode":"PD","r":"","c":0,"ic":2}
+{"step":693,"event":"FETCH","job_id":401,"ic":2,"ir":"GD30"}
+{"step":694,"event":"DECODE","job_id":401,"opcode":"GD","operand":"30"}
+{"step":695,"event":"INTERRUPT","job_id":401,"si":1}
+{"step":696,"event":"SERVICE_READ","job_id":401,"block":30,"card":"ABCD\n"}
+{"step":697,"event":"MEM_SET","word":30,"content":"ABCD"}
+{"step":698,"event":"EXECUTE","job_id":401,"opcode":"GD","r":"","c":0,"ic":3}
+{"step":699,"event":"FETCH","job_id":401,"ic":3,"ir":"PD30"}
+{"step":700,"event":"DECODE","job_id":401,"opcode":"PD","operand":"30"}
+{"step":701,"event":"INTERRUPT","job_id":401,"si":2}
+{"step":702,"event":"SERVICE_WRITE","job_id":401,"block":30,"output":"ABCD"}
+{"step":703,"event":"EXECUTE","job_id":401,"opcode":"PD","r":"","c":0,"ic":4}
+{"step":704,"event":"FETCH","job_id":401,"ic":4,"ir":"GD40"}
+{"step":705,"event":"DECODE","job_id":401,"opcode":"GD","operand":"40"}
+{"step":706,"event":"INTERRUPT","job_id":401,"si":1}
+{"step":707,"event":"SERVICE_READ","job_id":401,"block":40,"card":"DO NOT\n"}
+{"step":708,"event":"MEM_SET","word":40,"content":"DO N"}
+{"step":709,"event":"MEM_SET","word":41,"content":"OT"}
+{"step":710,"event":"EXECUTE","job_id":401,"opcode":"GD","r":"","c":0,"ic":5}
+{"step":711,"event":"FETCH","job_id":401,"ic":5,"ir":"GD50"}
+{"step":712,"event":"DECODE","job_id":401,"opcode":"GD","operand":"50"}
+{"step":713,"event":"INTERRUPT","job_id":401,"si":1}
+{"step":714,"event":"SERVICE_READ","job_id":401,"block":50,"card":"MATCH\n"}
+{"step":715,"event":"MEM_SET","word":50,"content":"MATC"}
+{"step":716,"event":"MEM_SET","word":51,"content":"H"}
+{"step":717,"event":"EXECUTE","job_id":401,"opcode":"GD","r":"","c":0,"ic":6}
+{"step":718,"event":"FETCH","job_id":401,"ic":6,"ir":"LR20"}
+{"step":719,"event":"DECODE","job_id":401,"opcode":"LR","operand":"20"}
+{"step":720,"event":"EXECUTE","job_id":401,"opcode":"LR","r":"ABCD","c":0,"ic":7}
+{"step":721,"event":"FETCH","job_id":401,"ic":7,"ir":"CR30"}
+{"step":722,"event":"DECODE","job_id":401,"opcode":"CR","operand":"30"}
+{"step":723,"event":"EXECUTE","job_id":401,"opcode":"CR","r":"ABCD","c":1,"ic":8}
+{"step":724,"event":"FETCH","job_id":401,"ic":8,"ir":"BT10"}
+{"step":725,"event":"DECODE","job_id":401,"opcode":"BT","operand":"10"}
+{"step":726,"event":"EXECUTE","job_id":401,"opcode":"BT","r":"ABCD","c":1,"ic":10}
+{"step":727,"event":"FETCH","job_id":401,"ic":10,"ir":"PD50"}
+{"step":728,"event":"DECODE","job_id":401,"opcode":"PD","operand":"50"}
+{"step":729,"event":"INTERRUPT","job_id":401,"si":2}
+{"step":730,"event":"SERVICE_WRITE","job_id":401,"block":50,"output":"MATCH"}
+{"step":731,"event":"EXECUTE","job_id":401,"opcode":"PD","r":"ABCD","c":1,"ic":11}
+{"step":732,"event":"FETCH","job_id":401,"ic":11,"ir":"H   "}
+{"step":733,"event":"EXECUTE","job_id":401,"opcode":"H","r":"ABCD","c":1,"ic":12}
+{"step":734,"event":"INTERRUPT","job_id":401,"si":3}
+{"step":735,"event":"TERMINATE","job_id":401,"ic":12}
+{"step":736,"event":"JOB_START","job_id":402,"card":"$AMJ040200130004\n"}
+{"step":737,"event":"LOAD_PROG","job_id":402,"block":0,"card":"GD20PD20GD30LR30SR20PD20GD40PD40GD50LR50\n"}
+{"step":738,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":739,"event":"MEM_SET","word":1,"content":"PD20"}
+{"step":740,"event":"MEM_SET","word":2,"content":"GD30"}
+{"step":741,"event":"MEM_SET","word":3,"content":"LR30"}
+{"step":742,"event":"MEM_SET","word":4,"content":"SR20"}
+{"step":743,"event":"MEM_SET","word":5,"content":"PD20"}
+{"step":744,"event":"MEM_SET","word":6,"content":"GD40"}
+{"step":745,"event":"MEM_SET","word":7,"content":"PD40"}
+{"step":746,"event":"MEM_SET","word":8,"content":"GD50"}
+{"step":747,"event":"MEM_SET","word":9,"content":"LR50"}
+{"step":748,"event":"LOAD_PROG","job_id":402,"block":10,"card":"SR20PD20H   \n"}
+{"step":749,"event":"MEM_SET","word":10,"content":"SR20"}
+{"step":750,"event":"MEM_SET","word":11,"content":"PD20"}
+{"step":751,"event":"MEM_SET","word":12,"content":"H   "}
+{"step":752,"event":"CARD_DTA","job_id":402}
+{"step":753,"event":"START_EXEC","job_id":402,"ic":0}
+{"step":754,"event":"FETCH","job_id":402,"ic":0,"ir":"GD20"}
+{"step":755,"event":"DECODE","job_id":402,"opcode":"GD","operand":"20"}
+{"step":756,"event":"INTERRUPT","job_id":402,"si":1}
+{"step":757,"event":"SERVICE_READ","job_id":402,"block":20,"card":"   RAT\n"}
+{"step":758,"event":"MEM_SET","word":20,"content":"   R"}
+{"step":759,"event":"MEM_SET","word":21,"content":"AT"}
+{"step":760,"event":"EXECUTE","job_id":402,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":761,"event":"FETCH","job_id":402,"ic":1,"ir":"PD20"}
+{"step":762,"event":"DECODE","job_id":402,"opcode":"PD","operand":"20"}
+{"step":763,"event":"INTERRUPT","job_id":402,"si":2}
+{"step":764,"event":"SERVICE_WRITE","job_id":402,"block":20,"output":"   RAT"}
+{"step":765,"event":"EXECUTE","job_id":402,"opcode":"PD","r":"","c":0,"ic":2}
+{"step":766,"event":"FETCH","job_id":402,"ic":2,"ir":"GD30"}
+{"step":767,"event":"DECODE","job_id":402,"opcode":"GD","operand":"30"}
+{"step":768,"event":"INTERRUPT","job_id":402,"si":1}
+{"step":769,"event":"SERVICE_READ","job_id":402,"block":30,"card":"   S\n"}
+{"step":770,"event":"MEM_SET","word":30,"content":"   S"}
+{"step":771,"event":"EXECUTE","job_id":402,"opcode":"GD","r":"","c":0,"ic":3}
+{"step":772,"event":"FETCH","job_id":402,"ic":3,"ir":"LR30"}
+{"step":773,"event":"DECODE","job_id":402,"opcode":"LR","operand":"30"}
+{"step":774,"event":"EXECUTE","job_id":402,"opcode":"LR","r":"   S","c":0,"ic":4}
+{"step":775,"event":"FETCH","job_id":402,"ic":4,"ir":"SR20"}
+{"step":776,"event":"DECODE","job_id":402,"opcode":"SR","operand":"20"}
+{"step":777,"event":"MEM_SET","word":20,"content":"   S"}
+{"step":778,"event":"EXECUTE","job_id":402,"opcode":"SR","r":"   S","c":0,"ic":5}
+{"step":779,"event":"FETCH","job_id":402,"ic":5,"ir":"PD20"}
+{"step":780,"event":"DECODE","job_id":402,"opcode":"PD","operand":"20"}
+{"step":781,"event":"INTERRUPT","job_id":402,"si":2}
+{"step":782,"event":"SERVICE_WRITE","job_id":402,"block":20,"output":"   SAT"}
+{"step":783,"event":"EXECUTE","job_id":402,"opcode":"PD","r":"   S","c":0,"ic":6}
+{"step":784,"event":"FETCH","job_id":402,"ic":6,"ir":"GD40"}
+{"step":785,"event":"DECODE","job_id":402,"opcode":"GD","operand":"40"}
+{"step":786,"event":"INTERRUPT","job_id":402,"si":1}
+{"step":787,"event":"SERVICE_READ","job_id":402,"block":40,"card":"   ON\n"}
+{"step":788,"event":"MEM_SET","word":40,"content":"   O"}
+{"step":789,"event":"MEM_SET","word":41,"content":"N"}
+{"step":790,"event":"EXECUTE","job_id":402,"opcode":"GD","r":"   S","c":0,"ic":7}
+{"step":791,"event":"FETCH","job_id":402,"ic":7,"ir":"PD40"}
+{"step":792,"event":"DECODE","job_id":402,"opcode":"PD","operand":"40"}
+{"step":793,"event":"INTERRUPT","job_id":402,"si":2}
+{"step":794,"event":"SERVICE_WRITE","job_id":402,"block":40,"output":"   ON"}
+{"step":795,"event":"EXECUTE","job_id":402,"opcode":"PD","r":"   S","c":0,"ic":8}
+{"step":796,"event":"FETCH","job_id":402,"ic":8,"ir":"GD50"}
+{"step":797,"event":"DECODE","job_id":402,"opcode":"GD","operand":"50"}
+{"step":798,"event":"INTERRUPT","job_id":402,"si":1}
+{"step":799,"event":"SERVICE_READ","job_id":402,"block":50,"card":"   M\n"}
+{"step":800,"event":"MEM_SET","word":50,"content":"   M"}
+{"step":801,"event":"EXECUTE","job_id":402,"opcode":"GD","r":"   S","c":0,"ic":9}
+{"step":802,"event":"FETCH","job_id":402,"ic":9,"ir":"LR50"}
+{"step":803,"event":"DECODE","job_id":402,"opcode":"LR","operand":"50"}
+{"step":804,"event":"EXECUTE","job_id":402,"opcode":"LR","r":"   M","c":0,"ic":10}
+{"step":805,"event":"FETCH","job_id":402,"ic":10,"ir":"SR20"}
+{"step":806,"event":"DECODE","job_id":402,"opcode":"SR","operand":"20"}
+{"step":807,"event":"MEM_SET","word":20,"content":"   M"}
+{"step":808,"event":"EXECUTE","job_id":402,"opcode":"SR","r":"   M","c":0,"ic":11}
+{"step":809,"event":"FETCH","job_id":402,"ic":11,"ir":"PD20"}
+{"step":810,"event":"DECODE","job_id":402,"opcode":"PD","operand":"20"}
+{"step":811,"event":"INTERRUPT","job_id":402,"si":2}
+{"step":812,"event":"SERVICE_WRITE","job_id":402,"block":20,"output":"   MAT"}
+{"step":813,"event":"EXECUTE","job_id":402,"opcode":"PD","r":"   M","c":0,"ic":12}
+{"step":814,"event":"FETCH","job_id":402,"ic":12,"ir":"H   "}
+{"step":815,"event":"EXECUTE","job_id":402,"opcode":"H","r":"   M","c":0,"ic":13}
+{"step":816,"event":"INTERRUPT","job_id":402,"si":3}
+{"step":817,"event":"TERMINATE","job_id":402,"ic":13}
+{"step":818,"event":"JOB_START","job_id":102,"card":"$AMJ010200070002\n"}
+{"step":819,"event":"LOAD_PROG","job_id":102,"block":0,"card":"GD20LR26CR20BT06GD30PD30PD20H   \n"}
+{"step":820,"event":"MEM_SET","word":0,"content":"GD20"}
+{"step":821,"event":"MEM_SET","word":1,"content":"LR26"}
+{"step":822,"event":"MEM_SET","word":2,"content":"CR20"}
+{"step":823,"event":"MEM_SET","word":3,"content":"BT06"}
+{"step":824,"event":"MEM_SET","word":4,"content":"GD30"}
+{"step":825,"event":"MEM_SET","word":5,"content":"PD30"}
+{"step":826,"event":"MEM_SET","word":6,"content":"PD20"}
+{"step":827,"event":"MEM_SET","word":7,"content":"H   "}
+{"step":828,"event":"CARD_DTA","job_id":102}
+{"step":829,"event":"START_EXEC","job_id":102,"ic":0}
+{"step":830,"event":"FETCH","job_id":102,"ic":0,"ir":"GD20"}
+{"step":831,"event":"DECODE","job_id":102,"opcode":"GD","operand":"20"}
+{"step":832,"event":"INTERRUPT","job_id":102,"si":1}
+{"step":833,"event":"SERVICE_READ","job_id":102,"block":20,"card":"RAM  IS OLDER THAN  SHRIRAM \n"}
+{"step":834,"event":"MEM_SET","word":20,"content":"RAM "}
+{"step":835,"event":"MEM_SET","word":21,"content":" IS "}
+{"step":836,"event":"MEM_SET","word":22,"content":"OLDE"}
+{"step":837,"event":"MEM_SET","word":23,"content":"R TH"}
+{"step":838,"event":"MEM_SET","word":24,"content":"AN  "}
+{"step":839,"event":"MEM_SET","word":25,"content":"SHRI"}
+{"step":840,"event":"MEM_SET","word":26,"content":"RAM "}
+{"step":841,"event":"EXECUTE","job_id":102,"opcode":"GD","r":"","c":0,"ic":1}
+{"step":842,"event":"FETCH","job_id":102,"ic":1,"ir":"LR26"}
+{"step":843,"event":"DECODE","job_id":102,"opcode":"LR","operand":"26"}
+{"step":844,"event":"EXECUTE","job_id":102,"opcode":"LR","r":"RAM ","c":0,"ic":2}
+{"step":845,"event":"FETCH","job_id":102,"ic":2,"ir":"CR20"}
+{"step":846,"event":"DECODE","job_id":102,"opcode":"CR","operand":"20"}
+{"step":847,"event":"EXECUTE","job_id":102,"opcode":"CR","r":"RAM ","c":1,"ic":3}
+{"step":848,"event":"FETCH","job_id":102,"ic":3,"ir":"BT06"}
+{"step":849,"event":"DECODE","job_id":102,"opcode":"BT","operand":"06"}
+{"step":850,"event":"EXECUTE","job_id":102,"opcode":"BT","r":"RAM ","c":1,"ic":6}
+{"step":851,"event":"FETCH","job_id":102,"ic":6,"ir":"PD20"}
+{"step":852,"event":"DECODE","job_id":102,"opcode":"PD","operand":"20"}
+{"step":853,"event":"INTERRUPT","job_id":102,"si":2}
+{"step":854,"event":"SERVICE_WRITE","job_id":102,"block":20,"output":"RAM  IS OLDER THAN  SHRIRAM "}
+{"step":855,"event":"EXECUTE","job_id":102,"opcode":"PD","r":"RAM ","c":1,"ic":7}
+{"step":856,"event":"FETCH","job_id":102,"ic":7,"ir":"H   "}
+{"step":857,"event":"EXECUTE","job_id":102,"opcode":"H","r":"RAM ","c":1,"ic":8}
+{"step":858,"event":"INTERRUPT","job_id":102,"si":3}
+{"step":859,"event":"TERMINATE","job_id":102,"ic":8}
