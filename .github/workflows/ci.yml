@@ -1,0 +1,52 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          install: mingw-w64-x86_64-gcc make
+          update: true
+
+      - name: Add MSYS2 to PATH
+        shell: cmd
+        run: echo "C:\msys64\mingw64\bin" >> %GITHUB_PATH%
+
+      - name: Verify GCC
+        shell: bash
+        run: gcc --version
+
+      - name: Build Phase 1
+        shell: bash
+        working-directory: ./phase1
+        run: make
+
+      - name: Build Phase 2
+        shell: bash
+        run: make
+
+      - name: Test Phase 1
+        shell: pwsh
+        working-directory: ./phase1
+        run: |
+          & "C:\Program Files\PowerShell\7\pwsh.exe" -ExecutionPolicy Bypass -File "..\test\run_test.ps1"
+
+      - name: Test Phase 2
+        shell: pwsh
+        run: |
+          & "C:\Program Files\PowerShell\7\pwsh.exe" -ExecutionPolicy Bypass -File ".\test\run_test_phase2.ps1"
