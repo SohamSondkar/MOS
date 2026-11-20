@@ -66,15 +66,9 @@ extern bool frame_allocated[TOTAL_FRAMES];
 extern bool job_terminated;
 extern int  job_count;
 
-/* File pointers for simulated card reader, printer, and optional tracer */
+/* File pointers for simulated card reader and printer */
 extern FILE *fp_in;
 extern FILE *fp_out;
-extern FILE *fp_trace;
-extern int  trace_step;
-
-/* Execution Tracing Helpers */
-void TRACE_EVENT(const char *event_type, const char *fmt, ...);
-void escape_trace_str(char *dest, const char *src, int len);
 
 /* VM, Paging, and Loader Prototypes */
 void INIT(void);
